@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GCS — Savaşan İHA Simülasyon Paneli</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e1a;--bg2:#111827;--bg3:#1a2235;--bg4:#1e2a40;
+  --border:#1e3a5f;
+  --blue:#3b82f6;--blue2:#60a5fa;
+  --green:#22c55e;--green2:#4ade80;
+  --amber:#f59e0b;--amber2:#fcd34d;
+  --red:#ef4444;--red2:#f87171;
+  --teal:#14b8a6;--teal2:#2dd4bf;
+  --purple:#a855f7;--purple2:#c084fc;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --font:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:12px;height:100vh;overflow:hidden}
+
+/* ── CONFIG OVERLAY ── */
+#cfg-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;display:flex;align-items:center;justify-content:center}
+#cfg-box{background:#111827;border:1px solid #1e3a5f;border-radius:10px;padding:28px 32px;width:520px;max-width:95vw}
+#cfg-box h2{color:var(--blue2);font-size:14px;margin-bottom:4px;letter-spacing:.06em}
+#cfg-box p{color:var(--text3);font-size:11px;margin-bottom:20px}
+.cfg-section{margin-bottom:16px}
+.cfg-label{font-size:10px;color:var(--text3);letter-spacing:.06em;margin-bottom:5px;display:block}
+.cfg-row{display:flex;gap:8px;align-items:center}
+.cfg-row input{flex:1;background:#1a2235;border:1px solid #1e3a5f;border-radius:5px;padding:7px 10px;color:var(--text);font-family:var(--font);font-size:12px;outline:none}
+.cfg-row input:focus{border-color:var(--blue)}
+.cfg-row select{background:#1a2235;border:1px solid #1e3a5f;border-radius:5px;padding:7px 10px;color:var(--text);font-family:var(--font);font-size:12px;outline:none}
+.cfg-badge{font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(245,158,11,.15);color:var(--amber2);border:1px solid rgba(245,158,11,.25);white-space:nowrap}
+.cfg-note{font-size:10px;color:var(--text3);margin-top:4px;line-height:1.5}
+.cfg-divider{border:none;border-top:1px solid #1e3a5f;margin:16px 0}
+.cfg-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.btn-primary{background:var(--blue);color:#fff;border:none;border-radius:5px;padding:8px 20px;font-family:var(--font);font-size:12px;cursor:pointer;font-weight:600}
+.btn-primary:hover{background:#2563eb}
+.btn-sim{background:rgba(34,197,94,.15);color:var(--green2);border:1px solid rgba(34,197,94,.3);border-radius:5px;padding:8px 20px;font-family:var(--font);font-size:12px;cursor:pointer}
+.btn-sim:hover{background:rgba(34,197,94,.25)}
+.conn-status{font-size:10px;padding:3px 9px;border-radius:4px;margin-left:auto}
+.cs-ok{background:rgba(34,197,94,.15);color:var(--green2);border:1px solid rgba(34,197,94,.3)}
+.cs-err{background:rgba(239,68,68,.15);color:var(--red2);border:1px solid rgba(239,68,68,.3)}
+.cs-try{background:rgba(59,130,246,.15);color:var(--blue2);border:1px solid rgba(59,130,246,.3)}
+
+/* ── MAIN GCS ── */
+.gcs{display:grid;grid-template-columns:220px 1fr 220px;grid-template-rows:40px 1fr 178px;gap:4px;height:100vh;padding:4px}
+.topbar{grid-column:1/-1;background:var(--bg2);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;padding:0 12px;gap:10px}
+.logo{color:var(--blue2);font-weight:700;font-size:13px;letter-spacing:.05em;margin-right:4px}
+.logo span{color:var(--text3)}
+.status-pill{display:flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:.04em}
+.pill-active{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:var(--green2)}
+.pill-warn{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--amber2)}
+.pill-danger{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--red2)}
+.pill-off{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2);color:var(--text3)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.clock{color:var(--text2);font-size:11px}
+.mission-time{color:var(--amber2);font-size:11px}
+.btn-cfg{background:rgba(59,130,246,.15);color:var(--blue2);border:1px solid rgba(59,130,246,.3);border-radius:4px;padding:3px 10px;font-family:var(--font);font-size:10px;cursor:pointer}
+
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.panel-title{padding:5px 10px;border-bottom:1px solid var(--border);font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--text3);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.panel-title span{color:var(--blue2)}
+.panel-body{flex:1;overflow:hidden;padding:7px}
+
+.left-col{display:flex;flex-direction:column;gap:4px}
+.telem-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.telem-item{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:5px 7px}
+.telem-label{font-size:9px;color:var(--text3);letter-spacing:.06em;margin-bottom:1px}
+.telem-val{font-size:14px;font-weight:700;color:var(--blue2)}
+.telem-val.green{color:var(--green2)}
+.telem-val.amber{color:var(--amber2)}
+.telem-val.red{color:var(--red2)}
+.telem-unit{font-size:9px;color:var(--text3);margin-left:1px}
+
+.algo-list{display:flex;flex-direction:column;gap:4px}
+.algo-item{display:flex;align-items:center;gap:7px;padding:4px 7px;background:var(--bg3);border-radius:4px;border:1px solid var(--border)}
+.algo-name{flex:1;font-size:10px;color:var(--text2)}
+.algo-badge{font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
+.ab-run{background:rgba(34,197,94,.15);color:var(--green2);border:1px solid rgba(34,197,94,.25)}
+.ab-idle{background:rgba(100,116,139,.15);color:var(--text3);border:1px solid rgba(100,116,139,.2)}
+.ab-warn{background:rgba(245,158,11,.15);color:var(--amber2);border:1px solid rgba(245,158,11,.25)}
+.ab-hot{background:rgba(168,85,247,.15);color:var(--purple2);border:1px solid rgba(168,85,247,.25)}
+
+.camera-wrap{position:relative;flex:1;overflow:hidden;background:#000}
+canvas#cam{width:100%;height:100%;display:block}
+.cam-overlay{position:absolute;inset:0;pointer-events:none}
+.crosshair{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px}
+.crosshair::before,.crosshair::after{content:'';position:absolute;background:rgba(59,130,246,.6)}
+.crosshair::before{width:1px;height:100%;left:50%;top:0}
+.crosshair::after{width:100%;height:1px;top:50%;left:0}
+.target-box{position:absolute;border:2px solid var(--red2);border-radius:2px;transition:all .1s}
+.cam-info{position:absolute;top:6px;left:6px;display:flex;flex-direction:column;gap:2px}
+.cam-tag{background:rgba(0,0,0,.75);border:1px solid var(--border);padding:2px 6px;border-radius:3px;font-size:10px;color:var(--text2)}
+.cam-tag.active{color:var(--green2)}
+.cam-tag.sim{color:var(--amber2)}
+.cam-bottom{position:absolute;bottom:6px;left:6px;right:6px;display:flex;justify-content:space-between;gap:4px}
+.hud-bar{background:rgba(0,0,0,.75);border:1px solid var(--border);padding:2px 8px;border-radius:3px;font-size:10px;color:var(--teal2)}
+.no-stream{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--text3)}
+.no-stream p{font-size:11px}
+.no-stream code{font-size:10px;color:var(--amber2);background:var(--bg3);padding:3px 8px;border-radius:4px}
+
+.api-log{display:flex;flex-direction:column;gap:2px;overflow-y:auto;height:100%;scrollbar-width:none}
+.api-log::-webkit-scrollbar{display:none}
+.log-entry{display:flex;gap:5px;align-items:flex-start;padding:3px 5px;border-radius:3px;background:var(--bg3);border-left:2px solid transparent;font-size:10px;flex-shrink:0}
+.log-entry.req{border-color:var(--blue)}
+.log-entry.res{border-color:var(--green)}
+.log-entry.err{border-color:var(--red)}
+.log-entry.sys{border-color:var(--text3)}
+.log-time{color:var(--text3);min-width:50px;font-size:9px;margin-top:1px;flex-shrink:0}
+.log-method{font-weight:700;min-width:34px;font-size:9px;flex-shrink:0}
+.req .log-method{color:var(--blue2)}
+.res .log-method{color:var(--green2)}
+.err .log-method{color:var(--red2)}
+.sys .log-method{color:var(--text3)}
+.log-text{color:var(--text2);flex:1;line-height:1.4;word-break:break-all}
+.log-code{margin-left:auto;font-size:9px;font-weight:600;flex-shrink:0}
+.code-200{color:var(--green2)}
+.code-err{color:var(--red2)}
+
+.bottom-row{grid-column:1/-1;display:grid;grid-template-columns:220px 1fr 220px;gap:4px}
+.mission-list{display:flex;flex-direction:column;gap:3px}
+.mission-item{display:flex;align-items:center;gap:7px;padding:4px 7px;background:var(--bg3);border-radius:4px;border:1px solid var(--border)}
+.m-icon{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
+.m-done{background:rgba(34,197,94,.2);color:var(--green2);border:1px solid rgba(34,197,94,.3)}
+.m-active{background:rgba(59,130,246,.2);color:var(--blue2);border:1px solid rgba(59,130,246,.3);animation:blink 1s infinite}
+.m-wait{background:rgba(100,116,139,.1);color:var(--text3);border:1px solid rgba(100,116,139,.2)}
+.m-name{flex:1;font-size:10px;color:var(--text2)}
+.m-pct{font-size:10px;font-weight:600}
+.pct-done{color:var(--green2)} .pct-act{color:var(--blue2)} .pct-wait{color:var(--text3)}
+
+.sensor-list{display:flex;flex-direction:column;gap:5px}
+.sensor-item{display:flex;flex-direction:column;gap:2px}
+.sensor-header{display:flex;justify-content:space-between;align-items:center}
+.sensor-name{font-size:10px;color:var(--text2)}
+.sensor-val{font-size:10px;font-weight:600;color:var(--blue2)}
+.sensor-bar{height:4px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.sensor-fill{height:100%;border-radius:3px;transition:width .5s}
+.fill-blue{background:var(--blue)} .fill-green{background:var(--green)}
+.fill-amber{background:var(--amber)} .fill-red{background:var(--red)}
+canvas{display:block}
+</style>
+</head>
+<body>
+
+<!-- ── CONFIG OVERLAY ── -->
+<div id="cfg-overlay">
+  <div id="cfg-box">
+    <h2>GCS BAĞLANTI YAPILANDIRMASI</h2>
+    <p>Simülasyon veya gerçek donanım için bağlantı ayarlarını girin.</p>
+
+    <div class="cfg-section">
+      <span class="cfg-label">MOD</span>
+      <div class="cfg-row">
+        <select id="cfg-mode" style="width:100%">
+          <option value="sim">Simülasyon — PX4 SITL + Mock Sunucu (localhost)</option>
+          <option value="demo">Demo — Bağlantısız sahte veri</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="cfg-divider"/>
+
+    <div class="cfg-section">
+      <span class="cfg-label">MOCK SUNUCU (api/mock_sunucu.py)</span>
+      <div class="cfg-row">
+        <input id="cfg-api" value="http://127.0.0.1:5000" placeholder="http://127.0.0.25:5000"/>
+        <div class="cfg-badge">FastAPI</div>
+      </div>
+      <p class="cfg-note">Yarışmada → <code style="color:var(--amber2)">http://127.0.0.25:5000</code> ile değiştirin</p>
+    </div>
+
+    <div class="cfg-section">
+      <span class="cfg-label">TAKIM BİLGİSİ — /api/giris için</span>
+      <div class="cfg-row">
+        <input id="cfg-kadi" placeholder="Kullanıcı adı (kadi)" style="flex:1"/>
+        <input id="cfg-sifre" type="password" placeholder="Şifre (sifre)" style="flex:1"/>
+      </div>
+    </div>
+
+    <div class="cfg-section">
+      <span class="cfg-label">TAKIM NUMARASI</span>
+      <div class="cfg-row">
+        <input id="cfg-takim" value="1" placeholder="Hakem tarafından verilir" style="width:120px"/>
+        <span class="cfg-badge">Telemetri paketine eklenir</span>
+      </div>
+    </div>
+
+    <div class="cfg-section">
+      <span class="cfg-label">TELEMETRİ POLLING HIZI</span>
+      <div class="cfg-row">
+        <select id="cfg-hz">
+          <option value="1000">1 Hz (yarışma kuralı — max 2 Hz)</option>
+          <option value="500">2 Hz (maksimum izin)</option>
+          <option value="2000">0.5 Hz (test)</option>
+        </select>
+        <span class="cfg-badge">≤2 Hz — üstü 400 hata</span>
+      </div>
+    </div>
+
+    <div class="cfg-section">
+      <span class="cfg-label">GAZEBO KAMERA STREAM (kamera_bridge.py)</span>
+      <div class="cfg-row">
+        <input id="cfg-cam" value="http://localhost:8554/video" placeholder="http://localhost:8554/video"/>
+        <div class="cfg-badge">MJPEG</div>
+      </div>
+      <p class="cfg-note">kamera_bridge.py port 8554'te çalışırken aktif olur</p>
+    </div>
+
+    <hr class="cfg-divider"/>
+
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:10px 12px;font-size:10px;color:var(--text3);line-height:1.8">
+      <div style="color:var(--text2);font-weight:600;margin-bottom:4px">Başlatma sırası hatırlatması:</div>
+      T1 → <code style="color:var(--green2)">make px4_sitl gz_rc_cessna</code><br/>
+      T2 → <code style="color:var(--green2)">MicroXRCEAgent udp4 -p 8888</code><br/>
+      T3 → <code style="color:var(--green2)">python3.11 api/mock_sunucu.py</code><br/>
+      T4 → <code style="color:var(--green2)">python3.11 api/telemetri_dongusu.py</code>
+    </div>
+
+    <div class="cfg-btns">
+      <button class="btn-sim" onclick="startDemo()">Demo Mod</button>
+      <button class="btn-primary" onclick="startConnected()">Bağlan &amp; Başlat</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN GCS ── -->
+<div class="gcs" id="main-gcs" style="display:none">
+
+  <div class="topbar">
+    <div class="logo">TEKNOFEST<span>/</span>GCS <span style="color:var(--text3);font-size:10px">SIM</span></div>
+    <div class="status-pill" id="pill-px4"><div class="dot"></div><span>PX4 SIM</span></div>
+    <div class="status-pill" id="pill-api"><div class="dot"></div><span>MOCK API</span></div>
+    <div class="status-pill" id="pill-telem"><div class="dot"></div><span>TELEMETRİ</span></div>
+    <div class="status-pill pill-off" id="pill-yolo"><div class="dot"></div><span>YOLO — BEKL.</span></div>
+    <div class="topbar-right">
+      <div class="mission-time">GÖREV: <span id="mtime">00:00:00</span></div>
+      <div class="clock" id="clock">--:--:--</div>
+      <button class="btn-cfg" onclick="document.getElementById('cfg-overlay').style.display='flex'">⚙ Ayarlar</button>
+    </div>
+  </div>
+
+  <!-- LEFT -->
+  <div class="left-col">
+    <div class="panel" style="flex:0 0 auto">
+      <div class="panel-title">TELEMETRİ <span id="telem-src">— DEMO</span></div>
+      <div class="panel-body">
+        <div class="telem-grid">
+          <div class="telem-item"><div class="telem-label">İRTİFA</div><div class="telem-val green" id="t-alt">—</div></div>
+          <div class="telem-item"><div class="telem-label">HIZ</div><div class="telem-val" id="t-spd">—</div></div>
+          <div class="telem-item"><div class="telem-label">BATARYA</div><div class="telem-val amber" id="t-bat">—</div></div>
+          <div class="telem-item"><div class="telem-label">OTONOM</div><div class="telem-val" id="t-oto">—</div></div>
+          <div class="telem-item"><div class="telem-label">PITCH</div><div class="telem-val" id="t-pitch">—</div></div>
+          <div class="telem-item"><div class="telem-label">ROLL</div><div class="telem-val" id="t-roll">—</div></div>
+          <div class="telem-item"><div class="telem-label">YAW</div><div class="telem-val" id="t-yaw">—</div></div>
+          <div class="telem-item"><div class="telem-label">KİLİTLENME</div><div class="telem-val" id="t-kilit">—</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="flex:1">
+      <div class="panel-title">ALGORİTMA DURUMU <span>AŞAMA 4→</span></div>
+      <div class="panel-body">
+        <div class="algo-list">
+          <div class="algo-item"><div class="algo-name">MAVSDK Bağlantı</div><div class="algo-badge ab-idle" id="ag-mavsdk">BEKL.</div></div>
+          <div class="algo-item"><div class="algo-name">Telemetri Döngüsü (1Hz)</div><div class="algo-badge ab-idle" id="ag-telem">BEKL.</div></div>
+          <div class="algo-item"><div class="algo-name">Mock Sunucu API</div><div class="algo-badge ab-idle" id="ag-api">BEKL.</div></div>
+          <div class="algo-item"><div class="algo-name">YOLO11 Tespit</div><div class="algo-badge ab-warn" id="ag-yolo">A.4 SIRADA</div></div>
+          <div class="algo-item"><div class="algo-name">Kilitlenme Algo.</div><div class="algo-badge ab-warn" id="ag-kilit">A.4 SIRADA</div></div>
+          <div class="algo-item"><div class="algo-name">D*Lite / RRT Rota</div><div class="algo-badge ab-warn">A.5 SIRADA</div></div>
+          <div class="algo-item"><div class="algo-name">LQR / MPC Kontrol</div><div class="algo-badge ab-warn">A.5 SIRADA</div></div>
+          <div class="algo-item"><div class="algo-name">PPO Öğrenme</div><div class="algo-badge ab-warn">A.5 SIRADA</div></div>
+          <div class="algo-item"><div class="algo-name">YKI Arayüzü</div><div class="algo-badge ab-warn">A.6 SIRADA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="panel" style="display:flex;flex-direction:column">
+    <div class="panel-title">KAMERA — <span id="cam-src-label">SİMÜLASYON</span> <span id="fps-label">—</span></div>
+    <div class="camera-wrap" id="cam-wrap">
+      <!-- MJPEG stream buraya gelecek -->
+      <img id="cam-stream" style="width:100%;height:100%;object-fit:cover;display:none" alt=""/>
+      <canvas id="cam" style="width:100%;height:100%;display:block"></canvas>
+      <div class="cam-overlay" id="cam-overlay-el">
+        <!-- AK: Kamera Görüş Alanı — dış yeşil çerçeve -->
+        <div id="ak-box" style="position:absolute;inset:0;border:2px solid rgba(34,197,94,.6);pointer-events:none;box-sizing:border-box"></div>
+        <!-- AV: Hedef Vuruş Alanı — sarı kutu %25/%10 kenar -->
+        <div id="av-box" style="position:absolute;border:2px solid rgba(250,204,21,.85);pointer-events:none;box-sizing:border-box;
+          left:25%;top:10%;right:25%;bottom:10%"></div>
+        <!-- AV etiket -->
+        <div style="position:absolute;left:25%;top:10%;transform:translateY(-18px);font-size:9px;color:rgba(250,204,21,.9);font-family:monospace;font-weight:600">AV</div>
+        <!-- AH: Kilitlenme Dörtgeni — kırmızı, YOLO bbox -->
+        <div id="ah-box" style="position:absolute;border:2px solid rgba(239,68,68,.9);pointer-events:none;display:none;box-sizing:border-box"></div>
+        <!-- Kilitlenme sayacı -->
+        <div id="kilit-sayac" style="position:absolute;top:12%;left:50%;transform:translateX(-50%);
+          background:rgba(0,0,0,.75);border:1px solid rgba(239,68,68,.6);
+          border-radius:6px;padding:4px 14px;display:none;flex-direction:column;align-items:center;gap:2px">
+          <div style="font-size:9px;color:rgba(239,68,68,.9);font-family:monospace;font-weight:600;letter-spacing:.08em">KİLİTLENME</div>
+          <div id="kilit-sure" style="font-size:18px;font-weight:700;color:#ef4444;font-family:monospace">0.0s</div>
+          <div style="width:120px;height:5px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden">
+            <div id="kilit-bar" style="height:100%;background:#ef4444;border-radius:3px;width:0%;transition:width .1s"></div>
+          </div>
+        </div>
+        <!-- Başarılı kilitlenme bildirimi -->
+        <div id="kilit-basarili" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+          background:rgba(34,197,94,.9);border-radius:8px;padding:10px 24px;
+          font-size:16px;font-weight:700;color:#fff;font-family:monospace;display:none;text-align:center">
+          KİLİTLENME BAŞARILI<br/>
+          <span id="kilit-sure-final" style="font-size:11px;font-weight:400"></span>
+        </div>
+        <div class="crosshair"></div>
+        <div class="cam-info">
+          <div class="cam-tag sim" id="cam-tag-mode">SİMÜLASYON MODU</div>
+          <div class="cam-tag" id="cam-tag-res">Gazebo gz_rc_cessna</div>
+          <div class="cam-tag" id="cam-tag-yolo" style="color:var(--text3)">YOLO: bekleniyor</div>
+        </div>
+        <div class="cam-bottom">
+          <div class="hud-bar">ALT: <span id="hud-alt">—</span></div>
+          <div class="hud-bar">ENLEM: <span id="hud-lat">—</span></div>
+          <div class="hud-bar">BOYLAM: <span id="hud-lon">—</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--bg2);border-top:1px solid var(--border)">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div style="font-size:9px;color:var(--text3);letter-spacing:.06em">ATTITUDE</div>
+        <canvas id="attitude" width="88" height="88"></canvas>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div style="font-size:9px;color:var(--text3);letter-spacing:.06em">PUSULA</div>
+        <canvas id="compass" width="88" height="88"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: API LOG -->
+  <div class="panel">
+    <div class="panel-title">API LOG — mock_sunucu.py <span id="req-count">0 REQ</span></div>
+    <div class="panel-body" style="padding:5px">
+      <div class="api-log" id="api-log"></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-row">
+    <div class="panel">
+      <div class="panel-title">GÖREV DURUMU — AŞAMA TAKİBİ</div>
+      <div class="panel-body">
+        <div class="mission-list">
+          <div class="mission-item"><div class="m-icon m-done">✓</div><div class="m-name">A1 — PX4+Gazebo kurulum</div><div class="m-pct pct-done">100%</div></div>
+          <div class="mission-item"><div class="m-icon m-done">✓</div><div class="m-name">A2 — Otonom waypoint uçuş</div><div class="m-pct pct-done">100%</div></div>
+          <div class="mission-item"><div class="m-icon m-done">✓</div><div class="m-name">A3 — FastAPI + SQLite + Telemetri</div><div class="m-pct pct-done">100%</div></div>
+          <div class="mission-item"><div class="m-icon m-active">●</div><div class="m-name">A4 — YOLO11 + kilitlenme</div><div class="m-pct pct-act">Devam</div></div>
+          <div class="mission-item"><div class="m-icon m-wait">○</div><div class="m-name">A5 — CAD + QR + kamikaze</div><div class="m-pct pct-wait">—</div></div>
+          <div class="mission-item"><div class="m-icon m-wait">○</div><div class="m-name">A6 — YKI harita arayüzü</div><div class="m-pct pct-wait">—</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">SİSTEM DURUMU <span id="db-count">DB: —</span></div>
+      <div class="panel-body">
+        <div class="sensor-list">
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">Mock Sunucu (port 5000)</span><span class="sensor-val" id="sv-api">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-blue" id="sb-api" style="width:0%"></div></div>
+          </div>
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">Telemetri döngüsü</span><span class="sensor-val" id="sv-telem">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-green" id="sb-telem" style="width:0%"></div></div>
+          </div>
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">DB Telemetri kayıt</span><span class="sensor-val" id="sv-db">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-blue" id="sb-db" style="width:0%"></div></div>
+          </div>
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">Rakip konum alınan</span><span class="sensor-val" id="sv-rakip">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-amber" id="sb-rakip" style="width:0%"></div></div>
+          </div>
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">Paket gönderim başarısı</span><span class="sensor-val" id="sv-success">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-green" id="sb-success" style="width:0%"></div></div>
+          </div>
+          <div class="sensor-item">
+            <div class="sensor-header"><span class="sensor-name">Son paket gecikmesi</span><span class="sensor-val" id="sv-lat">—</span></div>
+            <div class="sensor-bar"><div class="sensor-fill fill-green" id="sb-lat" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">MİNİ HARİTA — WAYPOINT ROTASI</div>
+      <div class="panel-body" style="padding:0">
+        <canvas id="minimap" style="width:100%;height:100%;display:block"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG STATE ──
+let CFG = {
+  mode: 'demo',
+  apiBase: 'http://127.0.0.1:5000',
+  camUrl: 'http://localhost:8554/video',
+  kadi: '',
+  sifre: '',
+  takimNo: 1,
+  hz: 1000
+};
+
+let reqCount = 0;
+let startTime = Date.now();
+let connected = false;
+let telemData = {};
+let dbTelCount = 0, dbRakipCount = 0, successCount = 0, totalCount = 0;
+
+// ── START FUNCTIONS ──
+function startDemo() {
+  CFG.mode = 'demo';
+  document.getElementById('cfg-overlay').style.display = 'none';
+  document.getElementById('main-gcs').style.display = 'grid';
+  setPill('pill-px4','pill-warn','SİM — DEMO');
+  setPill('pill-api','pill-warn','DEMO MOD');
+  setPill('pill-telem','pill-warn','SAHTE VERİ');
+  document.getElementById('telem-src').textContent = '— DEMO';
+  setAlgoBadge('ag-mavsdk','ab-warn','DEMO');
+  setAlgoBadge('ag-telem','ab-run','DEMO ÇAL.');
+  setAlgoBadge('ag-api','ab-warn','DEMO');
+  startDemoLoop();
+  startCameraAnim();
+  startMapAnim();
+  startClock();
+  pollKilitlenmeDurum();
+  pollTespitDurum();
+}
+
+function startConnected() {
+  CFG.mode = 'sim';
+  CFG.apiBase = document.getElementById('cfg-api').value.trim();
+  CFG.kadi = document.getElementById('cfg-kadi').value.trim();
+  CFG.sifre = document.getElementById('cfg-sifre').value.trim();
+  CFG.takimNo = parseInt(document.getElementById('cfg-takim').value) || 1;
+  CFG.hz = parseInt(document.getElementById('cfg-hz').value) || 1000;
+  CFG.camUrl = document.getElementById('cfg-cam').value.trim() || 'http://localhost:8554/video';
+  document.getElementById('cfg-overlay').style.display = 'none';
+  document.getElementById('main-gcs').style.display = 'grid';
+  document.getElementById('telem-src').textContent = '— ' + CFG.apiBase;
+  startClock();
+  startCameraAnim();
+  startMapAnim();
+  tryLogin();
+}
+
+
+// ── KİLİTLENME DURUM POLLING ──
+let kilitBasariliGosterme = null;
+
+async function pollKilitlenmeDurum() {
+  if (!connected) { setTimeout(pollKilitlenmeDurum, 500); return; }
+  try {
+    const r = await fetch(CFG.apiBase + '/api/kilitlenme_durum');
+    if (r.ok) {
+      const d = await r.json();
+      guncelleKilitlenmeUI(d);
+    }
+  } catch(e) {}
+  setTimeout(pollKilitlenmeDurum, 200); // 5Hz polling
+}
+
+async function pollTespitDurum() {
+  if (!connected) { setTimeout(pollTespitDurum, 500); return; }
+  try {
+    const r = await fetch(CFG.apiBase + '/api/tespit_durum');
+    if (r.ok) {
+      const d = await r.json();
+      guncelleAHBox(d);
+    }
+  } catch(e) {}
+  setTimeout(pollTespitDurum, 100); // 10Hz polling
+}
+
+function guncelleAHBox(d) {
+  const ahBox = document.getElementById('ah-box');
+  const yoloTag = document.getElementById('cam-tag-yolo');
+  const wrap = document.getElementById('cam-wrap');
+  if (!ahBox || !wrap) return;
+
+  if (d.var) {
+    const wr = wrap.getBoundingClientRect();
+    const W = wr.width; const H = wr.height;
+    ahBox.style.display = 'block';
+    ahBox.style.left   = d.bx1 / 1280 * 100 + '%';
+    ahBox.style.top    = d.by1 / 720  * 100 + '%';
+    ahBox.style.width  = (d.bx2 - d.bx1) / 1280 * 100 + '%';
+    ahBox.style.height = (d.by2 - d.by1) / 720  * 100 + '%';
+    ahBox.style.borderColor = d.kilitlenme_hazir
+      ? 'rgba(239,68,68,.95)' : 'rgba(251,146,60,.8)';
+
+    if (yoloTag) {
+      yoloTag.textContent = d.takip_aktif
+        ? 'GOTURN: kilit ' + (d.conf*100).toFixed(0) + '%'
+        : 'YOLO: ' + (d.conf*100).toFixed(0) + '% ' + d.sinif;
+      yoloTag.style.color = d.kilitlenme_hazir ? 'var(--red2)' : 'var(--amber2)';
+    }
+    // YOLO rozeti guncelle
+    setAlgoBadge('ag-yolo', d.kilitlenme_hazir ? 'ab-hot' : 'ab-run',
+      d.takip_aktif ? 'GOTURN' : 'YOLO AKTİF');
+    setAlgoBadge('ag-kilit', d.kilitlenme_hazir ? 'ab-hot' : 'ab-run',
+      d.kilitlenme_hazir ? 'HAZIR' : 'İZLİYOR');
+  } else {
+    ahBox.style.display = 'none';
+    if (yoloTag) {
+      yoloTag.textContent = 'YOLO: hedef bekleniyor';
+      yoloTag.style.color = 'var(--text3)';
+    }
+    setAlgoBadge('ag-yolo', 'ab-run', 'YOLO AKTİF');
+    setAlgoBadge('ag-kilit', 'ab-idle', 'BEKL.');
+  }
+}
+
+function guncelleKilitlenmeUI(d) {
+  const sayac  = document.getElementById('kilit-sayac');
+  const sure   = document.getElementById('kilit-sure');
+  const bar    = document.getElementById('kilit-bar');
+  const basariliDiv = document.getElementById('kilit-basarili');
+  if (!sayac) return;
+
+  if (d.basarili && !kilitBasariliGosterme) {
+    // Basarili kilitlenme bildirimi
+    basariliDiv.style.display = 'block';
+    document.getElementById('kilit-sure-final').textContent =
+      'Süre: ' + d.gecen.toFixed(2) + 's | OTONOM +500 puan';
+    sayac.style.display = 'none';
+    kilitBasariliGosterme = setTimeout(() => {
+      basariliDiv.style.display = 'none';
+      kilitBasariliGosterme = null;
+    }, 3000);
+    addLog('sys', 'KİLİT', 'Kilitlenme BAŞARILI — ' + d.gecen.toFixed(2) + 's', null);
+    // KİLİTLENME pill guncelle
+    setPill('pill-telem', 'pill-active', 'KİLİTLENDİ');
+    setTimeout(() => setPill('pill-telem', 'pill-active', 'TELEMETRİ OK'), 3000);
+  } else if (d.aktif) {
+    sayac.style.display = 'flex';
+    basariliDiv.style.display = 'none';
+    sure.textContent = d.gecen.toFixed(1) + 's / 4.0s';
+    bar.style.width  = Math.min(d.yuzde, 100) + '%';
+    bar.style.background = d.yuzde > 75 ? '#22c55e' : '#ef4444';
+  } else {
+    sayac.style.display = 'none';
+    basariliDiv.style.display = 'none';
+  }
+}
+
+// ── LOGIN → /api/giris ──
+async function tryLogin() {
+  setPill('pill-api','pill-warn','BAĞLANIYOR...');
+  addLog('req','POST','/api/giris — oturum açılıyor', null);
+  const t0 = Date.now();
+  try {
+    const r = await fetch(CFG.apiBase + '/api/giris', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({kadi: CFG.kadi, sifre: CFG.sifre}),
+      
+    });
+    const lat = Date.now()-t0;
+    if (r.ok) {
+      // mock_sunucu.py "1" string döndürüyor — JSON parse'a gerek yok
+      addLog('res','200',`Giriş başarılı — Takım no: ${CFG.takimNo} (${lat}ms)`,'200');
+      setPill('pill-api','pill-active','API BAĞLI');
+      setAlgoBadge('ag-api','ab-run','AKTİF');
+      connected = true;
+      pollSunucuSaati();
+      fetchHSS();
+      fetchQR();
+      startPolling();
+      connectCameraStream();
+      pollKilitlenmeDurum();
+      pollTespitDurum();
+    } else {
+      addLog('err',r.status,`Giriş başarısız: ${r.status} — Demo moda geçildi`,r.status);
+      setPill('pill-api','pill-danger','HATA');
+      startDemoLoop();
+    }
+  } catch(e) {
+    addLog('err','ERR',`Bağlantı hatası: ${e.message} — mock_sunucu.py çalışıyor mu?`, null);
+    setPill('pill-api','pill-danger','BAĞLANTI YOK');
+    setAlgoBadge('ag-api','ab-warn','ÇEVRIMDIŞI');
+    startDemoLoop();
+  }
+}
+
+// ── POLL /api/telemetri_gonder ──
+async function startPolling() {
+  setPill('pill-telem','pill-active','TELEMETRİ 1Hz');
+  setAlgoBadge('ag-telem','ab-run','ÇALIŞIYOR');
+  setAlgoBadge('ag-mavsdk','ab-run','BAĞLI');
+  pollLoop();
+}
+
+async function pollLoop() {
+  if (!connected) return;
+  const t0 = Date.now();
+  const packet = buildPacket();
+  addLog('req','POST',`/api/telemetri_gonder | enlem:${packet.iha_enlem} alt:${packet.iha_irtifa.toFixed(1)}m`, null);
+  try {
+    const r = await fetch(CFG.apiBase + '/api/telemetri_gonder', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(packet), 
+    });
+    const lat = Date.now()-t0;
+    totalCount++;
+    if (r.ok) {
+      const d = await r.json();
+      successCount++;
+      // mock_sunucu.py "konumBilgileri" key'i ile dönüyor
+      const rakip = d.konumBilgileri ?? d.konumlar ?? d.rakipler ?? [];
+      const latMs = Date.now()-t0;
+      addLog('res','200',`Telemetri OK | ${latMs}ms | Rakip: ${rakip.length} | Alt: ${packet.iha_irtifa.toFixed(1)}m`,'200');
+      updateTelemUI(packet);
+      updateStatusBars(latMs, rakip.length);
+      setPill('pill-telem','pill-active','TELEMETRİ OK');
+      dbTelCount++;
+      document.getElementById('sv-db').textContent = dbTelCount;
+      document.getElementById('sb-db').style.width = Math.min(dbTelCount/100*100,100)+'%';
+      document.getElementById('db-count').textContent = `DB: ${dbTelCount} kayıt`;
+      if (rakip.length > 0) {
+        dbRakipCount += rakip.length;
+        document.getElementById('sv-rakip').textContent = dbRakipCount;
+        document.getElementById('sb-rakip').style.width = Math.min(dbRakipCount/50*100,100)+'%';
+        // Rakip konumunu logla
+        rakip.forEach(r2 => {
+          addLog('sys','RAKİP',`T${r2.takim_numarasi} → ${r2.iha_enlem?.toFixed(4)}, ${r2.iha_boylam?.toFixed(4)} | Alt:${r2.iha_irtifa}m | Hız:${r2.iha_hizi ?? r2.iha_hiz}m/s`, null);
+        });
+      }
+    } else {
+      addLog('err',r.status,`Telemetri hata: ${r.status}`,r.status);
+      setPill('pill-telem','pill-danger','HATA '+r.status);
+    }
+  } catch(e) {
+    addLog('err','ERR','Telemetri gönderilemedi: '+e.message, null);
+  }
+  setTimeout(pollLoop, CFG.hz);
+}
+
+// ── SUNUCU SAATİ POLL ──
+async function pollSunucuSaati() {
+  if (!connected) return;
+  addLog('req','GET','/api/sunucusaati', null);
+  try {
+    const r = await fetch(CFG.apiBase + '/api/sunucusaati', {});
+    if (r.ok) {
+      const d = await r.json();
+      addLog('res','200',`Sunucu saati: ${d.saat}:${String(d.dakika).padStart(2,'0')}:${String(d.saniye).padStart(2,'0')}.${d.milisaniye}`,'200');
+    }
+  } catch(e) { addLog('err','ERR','sunucusaati: '+e.message, null); }
+  setTimeout(pollSunucuSaati, 30000);
+}
+
+// ── QR KOORDİNATI ──
+async function fetchQR() {
+  if (!connected) return;
+  addLog('req','GET','/api/qr_koordinati', null);
+  try {
+    const r = await fetch(CFG.apiBase + '/api/qr_koordinati', {});
+    if (r.ok) {
+      const d = await r.json();
+      addLog('res','200',`QR Hedef → enlem:${d.qrEnlem} boylam:${d.qrBoylam}`,'200');
+    }
+  } catch(e) {}
+}
+
+// ── HSS KOORDİNATLARI ──
+async function fetchHSS() {
+  if (!connected) return;
+  addLog('req','GET','/api/hss_koordinatlari', null);
+  try {
+    const r = await fetch(CFG.apiBase + '/api/hss_koordinatlari', {});
+    if (r.ok) {
+      const d = await r.json();
+      // mock_sunucu.py: { hss_koordinat_bilgileri: [...] }
+      const hssler = d.hss_koordinat_bilgileri ?? [];
+      if (hssler.length > 0) {
+        hssler.forEach(h => {
+          addLog('res','200',`HSS id:${h.id} → ${h.hssEnlem}, ${h.hssBoylam} r:${h.hssYaricap}m`,'200');
+        });
+      } else {
+        addLog('res','200','HSS: Boş — hakem duyurusu bekleniyor','200');
+      }
+    }
+  } catch(e) { addLog('err','ERR','hss: '+e.message, null); }
+  setTimeout(fetchHSS, 60000);
+}
+
+// ── PACKET BUILDER (telemetri paketi alanları) ──
+let simLat=47.3979, simLon=8.5461, simAlt=0, simYaw=0;
+function buildPacket() {
+  // Demo modda simüle et, sim modda PX4 telemetrisi buraya gelir
+  simAlt += (Math.random()-.3)*0.5; simAlt = Math.max(0, Math.min(80, simAlt));
+  simYaw = (simYaw + 0.5) % 360;
+  simLat += (Math.random()-.5)*0.00002;
+  simLon += (Math.random()-.5)*0.00002;
+  const now = new Date();
+  return {
+    takim_numarasi: CFG.takimNo,
+    iha_enlem: +simLat.toFixed(6),
+    iha_boylam: +simLon.toFixed(6),
+    iha_irtifa: +simAlt.toFixed(2),
+    iha_dikilme: +(Math.random()*10-5).toFixed(2),
+    iha_yonelme: +simYaw.toFixed(1),
+    iha_yatis: +(Math.random()*16-8).toFixed(2),
+    iha_hiz: +(10+Math.random()*5).toFixed(2),
+    iha_batarya: +(65+Math.random()*10).toFixed(1),
+    iha_otonom: 1,
+    iha_kilitlenme: 0,
+    hedef_merkez_X: 0, hedef_merkez_Y: 0,
+    hedef_genislik: 0, hedef_yukseklik: 0,
+    gps_saati: {saat:now.getUTCHours(),dakika:now.getUTCMinutes(),saniye:now.getUTCSeconds(),milisaniye:now.getUTCMilliseconds()}
+  };
+}
+
+function updateTelemUI(p) {
+  setT('t-alt', p.iha_irtifa.toFixed(1), 'm', p.iha_irtifa>5?'green':'amber');
+  setT('t-spd', p.iha_hiz.toFixed(1), 'm/s', '');
+  setT('t-bat', p.iha_batarya.toFixed(0), '%', p.iha_batarya>50?'green':p.iha_batarya>25?'amber':'red');
+  setT('t-oto', p.iha_otonom?'OTONOM':'MANUEL', '', p.iha_otonom?'green':'amber');
+  setT('t-pitch', p.iha_dikilme.toFixed(1), '°', '');
+  setT('t-roll', p.iha_yatis.toFixed(1), '°', '');
+  setT('t-yaw', p.iha_yonelme.toFixed(0), '°', '');
+  setT('t-kilit', p.iha_kilitlenme?'VAR':'YOK', '', p.iha_kilitlenme?'red':'');
+  document.getElementById('hud-alt').textContent = p.iha_irtifa.toFixed(1)+'m';
+  document.getElementById('hud-lat').textContent = p.iha_enlem.toFixed(5);
+  document.getElementById('hud-lon').textContent = p.iha_boylam.toFixed(5);
+  drawCompass(p.iha_yonelme);
+  drawAttitude(p.iha_dikilme, p.iha_yatis);
+}
+
+function setT(id, val, unit, cls) {
+  const el = document.getElementById(id);
+  el.innerHTML = val + (unit?`<span class="telem-unit">${unit}</span>`:'');
+  el.className = 'telem-val' + (cls?' '+cls:'');
+}
+
+function updateStatusBars(lat, rakipCount) {
+  const successPct = totalCount>0 ? (successCount/totalCount*100) : 0;
+  document.getElementById('sv-api').textContent = 'AÇIK';
+  document.getElementById('sb-api').style.width = '100%';
+  document.getElementById('sb-api').className = 'sensor-fill fill-green';
+  document.getElementById('sv-telem').textContent = '1 Hz';
+  document.getElementById('sb-telem').style.width = '50%';
+  document.getElementById('sv-success').textContent = successPct.toFixed(0)+'%';
+  document.getElementById('sb-success').style.width = successPct+'%';
+  document.getElementById('sv-lat').textContent = lat+'ms';
+  document.getElementById('sb-lat').style.width = Math.min(lat/500*100,100)+'%';
+}
+
+// ── DEMO LOOP ──
+function startDemoLoop() {
+  setAlgoBadge('ag-telem','ab-run','DEMO ÇAL.');
+  setAlgoBadge('ag-mavsdk','ab-warn','DEMO');
+  const demoLogEntries = [
+    {type:'sys',method:'SYS',text:'Demo mod — PX4 SITL bağlantısı yok'},
+    {type:'req',method:'POST',text:'/api/telemetri_gonder [simüle]'},
+    {type:'res',method:'200',text:'enlem:47.3980 irtifa:24.1m hiz:12.3m/s', code:'200'},
+    {type:'req',method:'GET',text:'/api/sunucusaati [simüle]'},
+    {type:'res',method:'200',text:'saat:14 dakika:33 saniye:07 ms:412',code:'200'},
+    {type:'req',method:'GET',text:'/api/hss_koordinatlari [simüle]'},
+    {type:'res',method:'200',text:'HSS boş — hakem duyurusu bekleniyor',code:'200'},
+    {type:'req',method:'GET',text:'/api/qr_koordinati [simüle]'},
+    {type:'res',method:'200',text:'enlem:47.401 boylam:8.549',code:'200'},
+  ];
+  let di = 0;
+  function demoStep() {
+    const e = demoLogEntries[di++ % demoLogEntries.length];
+    addLog(e.type, e.method, e.text, e['200']||null);
+    const p = buildPacket();
+    updateTelemUI(p);
+    dbTelCount++;
+    document.getElementById('db-count').textContent = `DB: ${dbTelCount} kayıt`;
+    document.getElementById('sv-db').textContent = dbTelCount;
+    document.getElementById('sb-db').style.width = Math.min(dbTelCount/100*100,100)+'%';
+    document.getElementById('sv-telem').textContent = '1 Hz';
+    document.getElementById('sb-telem').style.width = '50%';
+    document.getElementById('sv-success').textContent = '100%';
+    document.getElementById('sb-success').style.width = '100%';
+    document.getElementById('sv-lat').textContent = '—';
+    setTimeout(demoStep, CFG.hz || 1000);
+  }
+  demoStep();
+}
+
+// ── CLOCK ──
+function startClock() {
+  function tick() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toTimeString().slice(0,8);
+    const e = Math.floor((Date.now()-startTime)/1000);
+    document.getElementById('mtime').textContent =
+      String(Math.floor(e/3600)).padStart(2,'0')+':'+
+      String(Math.floor((e%3600)/60)).padStart(2,'0')+':'+
+      String(e%60).padStart(2,'0');
+  }
+  setInterval(tick,1000); tick();
+}
+
+// ── LOG ──
+const logEl = document.getElementById('api-log');
+function addLog(type, method, text, code) {
+  const now = new Date();
+  const ts = now.toTimeString().slice(0,8)+'.'+String(now.getMilliseconds()).padStart(3,'0').slice(0,2);
+  const div = document.createElement('div');
+  div.className = `log-entry ${type}`;
+  div.innerHTML = `<span class="log-time">${ts}</span><span class="log-method">${method}</span><span class="log-text">${text}</span>${code?`<span class="log-code ${code==='200'?'code-200':'code-err'}">${code}</span>`:''}`;
+  logEl.insertBefore(div, logEl.firstChild);
+  while(logEl.children.length > 50) logEl.removeChild(logEl.lastChild);
+  reqCount++;
+  document.getElementById('req-count').textContent = reqCount+' REQ';
+}
+
+// ── PILLS & BADGES ──
+function setPill(id, cls, label) {
+  const el = document.getElementById(id);
+  el.className = 'status-pill '+cls;
+  el.innerHTML = `<div class="dot"></div><span>${label}</span>`;
+}
+function setAlgoBadge(id, cls, label) {
+  const el = document.getElementById(id);
+  el.className = 'algo-badge '+cls;
+  el.textContent = label;
+}
+
+
+// ── KAMERA STREAM BAĞLANTISI ──
+function connectCameraStream() {
+  const img = document.getElementById('cam-stream');
+  const canvas = document.getElementById('cam');
+  const statusTag = document.getElementById('cam-tag-mode');
+  const resTag = document.getElementById('cam-tag-res');
+
+  // Önce bağlantıyı test et
+  fetch(CFG.camUrl.replace('/video', '/status'))
+    .then(r => r.json())
+    .then(d => {
+      if (d.active) {
+        img.src = CFG.camUrl;
+        img.style.display = 'block';
+        canvas.style.display = 'none';
+        statusTag.textContent = 'GAZEBO KAMERA — CANLI';
+        statusTag.className = 'cam-tag active';
+        resTag.textContent = '1280x720 @ 30fps | MJPEG';
+        document.getElementById('cam-src-label').textContent = 'GAZEBO';
+        document.getElementById('fps-label').textContent = d.frames + ' FRAME';
+        addLog('sys','CAM','Gazebo kamera stream bağlandı: ' + CFG.camUrl, null);
+        // FPS sayacı
+        setInterval(() => {
+          fetch(CFG.camUrl.replace('/video', '/status'))
+            .then(r => r.json())
+            .then(s => { document.getElementById('fps-label').textContent = s.frames + ' frame'; })
+            .catch(() => {});
+        }, 5000);
+      } else {
+        addLog('sys','CAM','Kamera stream hazır değil — simülasyon devam ediyor', null);
+      }
+    })
+    .catch(() => {
+      addLog('sys','CAM','kamera_bridge.py çalışmıyor — simülasyon görüntüsü aktif', null);
+    });
+}
+
+// ── CAMERA ANIMATION (Gazebo sim görsel) ──
+let camAnim;
+function startCameraAnim() {
+  const canvas = document.getElementById('cam');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; }
+  window.addEventListener('resize', resize); resize();
+  let bgOff = 0;
+  function draw() {
+    const w=canvas.width, h=canvas.height;
+    if (!w||!h) { requestAnimationFrame(draw); return; }
+    ctx.fillStyle='#04080f'; ctx.fillRect(0,0,w,h);
+    // Gazebo-style ground grid
+    ctx.fillStyle='#0a1a0a'; ctx.fillRect(0,h*.55,w,h*.45);
+    const gh = ctx.createLinearGradient(0,h*.55,0,h);
+    gh.addColorStop(0,'#0d1f0d'); gh.addColorStop(1,'#060e06');
+    ctx.fillStyle=gh; ctx.fillRect(0,h*.55,w,h*.45);
+    // Ground grid lines (Gazebo-like)
+    ctx.strokeStyle='rgba(34,197,94,.12)'; ctx.lineWidth=.5;
+    const gs=40, off=bgOff%gs;
+    for(let x=-gs+off;x<w+gs;x+=gs){ctx.beginPath();ctx.moveTo(x,h*.55);ctx.lineTo(x-(h*.45)*.3,h);ctx.stroke();}
+    for(let i=0;i<8;i++){const y=h*.55+i*(h*.45/7);ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+    bgOff+=.4;
+    // Sky
+    const sky=ctx.createLinearGradient(0,0,0,h*.55);
+    sky.addColorStop(0,'#020812'); sky.addColorStop(1,'#061428');
+    ctx.fillStyle=sky; ctx.fillRect(0,0,w,h*.55);
+    // Horizon shimmer
+    ctx.strokeStyle='rgba(59,130,246,.2)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(0,h*.55); ctx.lineTo(w,h*.55); ctx.stroke();
+    // Gazebo label
+    ctx.fillStyle='rgba(20,184,166,.6)'; ctx.font='bold 10px monospace';
+    ctx.fillText('GAZEBO gz_rc_cessna — PX4 SITL', 10, h-12);
+    // Scan lines
+    for(let y=0;y<h;y+=3){ctx.fillStyle='rgba(0,0,0,.06)';ctx.fillRect(0,y,w,1);}
+    // Vignette
+    const vig=ctx.createRadialGradient(w/2,h/2,h*.25,w/2,h/2,h*.75);
+    vig.addColorStop(0,'transparent'); vig.addColorStop(1,'rgba(0,0,0,.5)');
+    ctx.fillStyle=vig; ctx.fillRect(0,0,w,h);
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ── COMPASS ──
+function drawCompass(heading) {
+  const c=document.getElementById('compass'), ctx=c.getContext('2d');
+  const w=c.width,h=c.height,r=w/2-4;
+  ctx.clearRect(0,0,w,h);
+  ctx.save(); ctx.translate(w/2,h/2);
+  ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2);
+  ctx.fillStyle='#0d1929'; ctx.fill();
+  ctx.strokeStyle='#1e3a5f'; ctx.lineWidth=1.5; ctx.stroke();
+  ['N','E','S','W'].forEach((d,i)=>{
+    const a=i*Math.PI/2-Math.PI/2;
+    ctx.fillStyle=d==='N'?'#ef4444':'#64748b';
+    ctx.font='600 8px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(d,Math.cos(a)*(r-9),Math.sin(a)*(r-9));
+  });
+  const rad=(heading-90)*Math.PI/180;
+  ctx.save(); ctx.rotate(rad);
+  ctx.fillStyle='#3b82f6';
+  ctx.beginPath(); ctx.moveTo(0,-(r-14)); ctx.lineTo(-4,0); ctx.lineTo(0,r-14); ctx.lineTo(4,0); ctx.closePath(); ctx.fill();
+  ctx.restore(); ctx.restore();
+}
+
+// ── ATTITUDE ──
+function drawAttitude(pitch, roll) {
+  const c=document.getElementById('attitude'), ctx=c.getContext('2d');
+  const w=c.width,h=c.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.save(); ctx.translate(w/2,h/2);
+  ctx.save(); ctx.rotate(roll*Math.PI/180);
+  const py=pitch*1.4;
+  ctx.beginPath(); ctx.arc(0,0,w/2-3,0,Math.PI*2); ctx.clip();
+  ctx.fillStyle='#1a3a6e'; ctx.fillRect(-w/2,-w/2,w,w/2+py);
+  ctx.fillStyle='#2d4a1e'; ctx.fillRect(-w/2,py,w,w);
+  ctx.strokeStyle='rgba(255,255,255,.4)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(-w/2,py); ctx.lineTo(w/2,py); ctx.stroke();
+  ctx.restore();
+  ctx.beginPath(); ctx.arc(0,0,w/2-3,0,Math.PI*2);
+  ctx.strokeStyle='#1e3a5f'; ctx.lineWidth=2; ctx.stroke();
+  ctx.strokeStyle='#f59e0b'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(-18,0); ctx.lineTo(-7,0); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(18,0); ctx.lineTo(7,0); ctx.stroke();
+  ctx.beginPath(); ctx.arc(0,0,2.5,0,Math.PI*2); ctx.fillStyle='#f59e0b'; ctx.fill();
+  ctx.restore();
+}
+drawCompass(0); drawAttitude(0,0);
+
+// ── MİNİ MAP ──
+let mapT=0;
+const waypoints=[{x:.15,y:.75},{x:.3,y:.35},{x:.55,y:.2},{x:.78,y:.45},{x:.65,y:.72}];
+function startMapAnim() {
+  const canvas=document.getElementById('minimap');
+  const mctx=canvas.getContext('2d');
+  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+  window.addEventListener('resize',resize); resize();
+  function draw(){
+    const w=canvas.width,h=canvas.height;
+    if(!w||!h){requestAnimationFrame(draw);return;}
+    mctx.fillStyle='#070d1a'; mctx.fillRect(0,0,w,h);
+    mctx.strokeStyle='rgba(30,58,95,.3)'; mctx.lineWidth=.5;
+    for(let i=0;i<8;i++){
+      mctx.beginPath(); mctx.moveTo(i*w/7,0); mctx.lineTo(i*w/7,h); mctx.stroke();
+      mctx.beginPath(); mctx.moveTo(0,i*h/7); mctx.lineTo(w,i*h/7); mctx.stroke();
+    }
+    // Rota
+    mctx.strokeStyle='rgba(59,130,246,.35)'; mctx.lineWidth=1.2; mctx.setLineDash([4,4]);
+    mctx.beginPath();
+    waypoints.forEach((p,i)=>{i===0?mctx.moveTo(p.x*w,p.y*h):mctx.lineTo(p.x*w,p.y*h)});
+    mctx.stroke(); mctx.setLineDash([]);
+    waypoints.forEach((p,i)=>{
+      mctx.beginPath(); mctx.arc(p.x*w,p.y*h,3.5,0,Math.PI*2);
+      mctx.fillStyle=i<2?'#22c55e':'#1e40af'; mctx.fill();
+    });
+    // İHA
+    mapT=(mapT+0.002)%1;
+    const seg=Math.floor(mapT*(waypoints.length-1));
+    const lt=mapT*(waypoints.length-1)-seg;
+    const a=waypoints[seg],b=waypoints[Math.min(seg+1,waypoints.length-1)];
+    const ux=a.x+(b.x-a.x)*lt, uy=a.y+(b.y-a.y)*lt;
+    const ang=Math.atan2(b.y-a.y,b.x-a.x);
+    mctx.save(); mctx.translate(ux*w,uy*h); mctx.rotate(ang);
+    mctx.fillStyle='#60a5fa';
+    mctx.beginPath(); mctx.moveTo(0,-7); mctx.lineTo(-4,5); mctx.lineTo(0,2); mctx.lineTo(4,5); mctx.closePath(); mctx.fill();
+    mctx.restore();
+    // Gazebo origin label
+    mctx.fillStyle='rgba(34,197,94,.5)'; mctx.font='9px monospace';
+    mctx.fillText('PX4 ORIGIN: 47.3980, 8.5461',4,h-6);
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,756 @@
+[18:32:17] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[18:41:56] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[18:45:59] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[23:04:26] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[23:18:23] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[23:33:05] [KILIT] Dongu basladi — tespit_queue bekleniyor
+[23:43:22] [KILIT] Dongu basladi — mock sunucu polling modu
+[23:43:47] [KILIT] → Oturum basladi | conf:0.10 AV:V Alan:V
+[23:44:19] [KILIT] V KILITLENME BASARILI! sure:31.95s | kez:1
+[23:44:19] [KILIT] V Paket gonderildi | OTONOM | sure:31.95s | gecikme:0.003s
+[23:44:19] [KILIT] → Oturum basladi | conf:0.12 AV:V Alan:V
+[23:44:51] [KILIT] V KILITLENME BASARILI! sure:31.78s | kez:2
+[23:44:51] [KILIT] V Paket gonderildi | OTONOM | sure:31.78s | gecikme:0.005s
+[23:44:51] [KILIT] → Oturum basladi | conf:0.11 AV:V Alan:V
+[23:45:22] [KILIT] V KILITLENME BASARILI! sure:31.07s | kez:3
+[23:45:22] [KILIT] V Paket gonderildi | OTONOM | sure:31.07s | gecikme:0.001s
+[23:45:22] [KILIT] → Oturum basladi | conf:0.11 AV:V Alan:V
+[23:45:53] [KILIT] V KILITLENME BASARILI! sure:31.45s | kez:4
+[23:45:53] [KILIT] V Paket gonderildi | OTONOM | sure:31.45s | gecikme:0.004s
+[23:45:53] [KILIT] → Oturum basladi | conf:0.07 AV:V Alan:V
+[23:46:23] [KILIT] V KILITLENME BASARILI! sure:30.03s | kez:5
+[23:46:23] [KILIT] V Paket gonderildi | OTONOM | sure:30.03s | gecikme:0.002s
+[23:46:24] [KILIT] → Oturum basladi | conf:0.15 AV:V Alan:V
+[23:46:54] [KILIT] V KILITLENME BASARILI! sure:30.09s | kez:6
+[23:46:54] [KILIT] V Paket gonderildi | OTONOM | sure:30.09s | gecikme:0.002s
+[23:46:54] [KILIT] → Oturum basladi | conf:0.10 AV:V Alan:V
+[23:47:23] [KILIT] V KILITLENME BASARILI! sure:29.42s | kez:7
+[23:47:23] [KILIT] V Paket gonderildi | OTONOM | sure:29.42s | gecikme:0.003s
+[23:47:23] [KILIT] → Oturum basladi | conf:0.13 AV:V Alan:V
+[23:47:27] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:8
+[23:47:27] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:47:27] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:52:58] [KILIT] Dongu basladi — mock sunucu polling modu
+[23:54:03] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:07] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:1
+[23:54:07] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:54:07] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:11] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:2
+[23:54:11] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:11] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:15] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:3
+[23:54:15] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:15] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:19] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:4
+[23:54:19] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:54:19] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:23] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:5
+[23:54:23] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:54:23] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:27] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:6
+[23:54:27] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:54:27] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:31] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:7
+[23:54:31] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:54:31] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:35] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:8
+[23:54:35] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:54:35] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:54:39] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:9
+[23:54:39] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:39] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:54:43] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:10
+[23:54:43] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:43] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:54:47] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:11
+[23:54:47] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:47] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:54:51] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:12
+[23:54:51] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:54:51] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:54:55] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:13
+[23:54:55] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:54:55] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:54:59] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:14
+[23:54:59] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:54:59] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:03] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:15
+[23:55:03] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.004s
+[23:55:03] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:07] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:16
+[23:55:07] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:55:07] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:11] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:17
+[23:55:11] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:55:11] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:15] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:18
+[23:55:15] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:55:15] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:19] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:19
+[23:55:19] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:55:20] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:24] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:20
+[23:55:24] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:55:24] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:28] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:21
+[23:55:28] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:55:28] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:32] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:22
+[23:55:32] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:55:32] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:36] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:23
+[23:55:36] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:55:36] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:40] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:24
+[23:55:40] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:55:40] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:44] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:25
+[23:55:44] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:55:44] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:48] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:26
+[23:55:48] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:55:48] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:52] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:27
+[23:55:52] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:55:52] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:55:56] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:28
+[23:55:56] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:55:56] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:00] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:29
+[23:56:00] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:56:00] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:04] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:30
+[23:56:04] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:56:04] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:08] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:31
+[23:56:08] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:56:08] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:12] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:32
+[23:56:12] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:56:12] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:16] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:33
+[23:56:16] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:56:16] [KILIT] → Oturum basladi | conf:0.20 AV:V Alan:V
+[23:56:20] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:34
+[23:56:20] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:56:20] [KILIT] → Oturum basladi | conf:0.11 AV:V Alan:V
+[23:56:24] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:35
+[23:56:24] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:56:24] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:28] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:36
+[23:56:28] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:56:28] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:32] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:37
+[23:56:32] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:56:32] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:36] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:38
+[23:56:36] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:56:36] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:40] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:39
+[23:56:40] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:56:40] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:44] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:40
+[23:56:44] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:56:44] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:48] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:41
+[23:56:48] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:56:48] [KILIT] → Oturum basladi | conf:0.14 AV:V Alan:V
+[23:56:52] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:42
+[23:56:52] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:56:52] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:56:56] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:43
+[23:56:56] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:56:56] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:00] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:44
+[23:57:00] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:57:00] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:04] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:45
+[23:57:04] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:04] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:08] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:46
+[23:57:08] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:08] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:12] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:47
+[23:57:12] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:57:12] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:16] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:48
+[23:57:16] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:57:16] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:20] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:49
+[23:57:20] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:57:20] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:24] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:50
+[23:57:24] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.004s
+[23:57:24] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:28] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:51
+[23:57:28] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:28] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:32] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:52
+[23:57:32] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:32] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:36] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:53
+[23:57:36] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:57:36] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:40] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:54
+[23:57:40] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:40] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:44] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:55
+[23:57:44] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:57:44] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:48] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:56
+[23:57:48] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:57:48] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:52] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:57
+[23:57:52] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:57:52] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:57:56] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:58
+[23:57:56] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.001s
+[23:57:56] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:00] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:59
+[23:58:00] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:58:00] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:04] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:60
+[23:58:04] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:04] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:08] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:61
+[23:58:08] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.001s
+[23:58:08] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:12] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:62
+[23:58:12] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:58:12] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:16] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:63
+[23:58:16] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.001s
+[23:58:16] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:20] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:64
+[23:58:20] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.001s
+[23:58:20] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:24] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:65
+[23:58:24] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:24] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:28] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:66
+[23:58:28] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:58:28] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:32] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:67
+[23:58:32] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:32] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:36] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:68
+[23:58:36] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:58:36] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:40] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:69
+[23:58:40] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:40] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:44] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:70
+[23:58:44] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:44] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:48] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:71
+[23:58:48] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:58:48] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:52] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:72
+[23:58:52] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:58:52] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:58:56] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:73
+[23:58:56] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:58:56] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:00] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:74
+[23:59:00] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.005s
+[23:59:00] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:04] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:75
+[23:59:04] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:59:04] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:08] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:76
+[23:59:08] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:59:08] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:12] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:77
+[23:59:12] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:59:12] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:16] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:78
+[23:59:16] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:59:16] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:20] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:79
+[23:59:20] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:59:20] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:24] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:80
+[23:59:24] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:59:24] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:28] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:81
+[23:59:28] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[23:59:28] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:32] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:82
+[23:59:32] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[23:59:33] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:37] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:83
+[23:59:37] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:59:37] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:41] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:84
+[23:59:41] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.001s
+[23:59:41] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:45] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:85
+[23:59:45] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.006s
+[23:59:45] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:49] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:86
+[23:59:49] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[23:59:49] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:53] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:87
+[23:59:53] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[23:59:53] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[23:59:57] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:88
+[23:59:57] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[23:59:57] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:01] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:89
+[00:00:01] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:00:01] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:05] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:90
+[00:00:05] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:00:05] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:09] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:91
+[00:00:09] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:09] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:13] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:92
+[00:00:13] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:00:13] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:17] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:93
+[00:00:17] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:17] [KILIT] → Oturum basladi | conf:0.09 AV:V Alan:V
+[00:00:21] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:94
+[00:00:21] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:00:21] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:25] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:95
+[00:00:25] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:25] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:29] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:96
+[00:00:29] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:00:29] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:33] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:97
+[00:00:33] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[00:00:33] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:37] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:98
+[00:00:37] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:00:37] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:41] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:99
+[00:00:41] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:00:41] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:45] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:100
+[00:00:45] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:45] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:49] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:101
+[00:00:49] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:00:49] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:53] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:102
+[00:00:53] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:53] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:00:57] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:103
+[00:00:57] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:00:57] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:01] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:104
+[00:01:01] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:01:01] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:05] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:105
+[00:01:05] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:01:05] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:09] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:106
+[00:01:09] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:01:09] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:13] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:107
+[00:01:13] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:01:13] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:17] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:108
+[00:01:17] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:01:17] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:21] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:109
+[00:01:21] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.005s
+[00:01:21] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:25] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:110
+[00:01:25] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:01:25] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:29] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:111
+[00:01:29] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:01:29] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:33] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:112
+[00:01:33] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:01:33] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:37] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:113
+[00:01:37] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:01:37] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:01:41] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:114
+[00:01:41] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:01:41] [KILIT] → Oturum basladi | conf:0.32 AV:V Alan:V
+[00:05:23] [KILIT] Dongu basladi — mock sunucu polling modu
+[00:05:46] [KILIT] → Oturum basladi | conf:0.33 AV:V Alan:V
+[00:05:50] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:1
+[00:05:50] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[00:05:50] [KILIT] → Oturum basladi | conf:0.33 AV:V Alan:V
+[00:05:54] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:2
+[00:05:54] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:05:54] [KILIT] → Oturum basladi | conf:0.33 AV:V Alan:V
+[00:05:58] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:3
+[00:05:59] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.004s
+[00:05:59] [KILIT] → Oturum basladi | conf:0.33 AV:V Alan:V
+[00:06:03] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:4
+[00:06:03] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:06:03] [KILIT] → Oturum basladi | conf:0.33 AV:V Alan:V
+[00:06:07] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:5
+[00:06:07] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[00:06:07] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:11] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:6
+[00:06:11] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:06:11] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:15] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:7
+[00:06:15] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:06:15] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:19] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:8
+[00:06:19] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:06:19] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:23] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:9
+[00:06:23] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[00:06:23] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:27] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:10
+[00:06:27] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.003s
+[00:06:27] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:31] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:11
+[00:06:31] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[00:06:31] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:35] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:12
+[00:06:35] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.003s
+[00:06:35] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:39] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:13
+[00:06:39] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.002s
+[00:06:39] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:43] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:14
+[00:06:43] [KILIT] V Paket gonderildi | OTONOM | sure:4.00s | gecikme:0.002s
+[00:06:43] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:47] [KILIT] V KILITLENME BASARILI! sure:4.01s | kez:15
+[00:06:47] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[00:06:47] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:51] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:16
+[00:06:51] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.005s
+[00:06:51] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:06:55] [KILIT] V KILITLENME BASARILI! sure:4.00s | kez:17
+[00:06:55] [KILIT] V Paket gonderildi | OTONOM | sure:4.01s | gecikme:0.004s
+[00:06:55] [KILIT] → Oturum basladi | conf:0.30 AV:V Alan:V
+[00:19:39] [KILIT] Basladi
+[00:37:42] [KILIT] → Basladi | conf:0.47
+[00:37:43] [KILIT] X Iptal | bosluk:1.0s gecen:1.0s
+[00:42:23] [KILIT] → Basladi | conf:0.40
+[00:42:24] [KILIT] X Iptal | bosluk:1.0s gecen:1.0s
+[00:42:24] [KILIT] → Basladi | conf:0.52
+[00:42:27] [KILIT] X Iptal | bosluk:1.0s gecen:3.0s
+[00:42:59] [KILIT] → Basladi | conf:0.43
+[00:43:02] [KILIT] X Iptal | bosluk:1.0s gecen:2.9s
+[00:43:33] [KILIT] → Basladi | conf:0.43
+[00:43:36] [KILIT] X Iptal | bosluk:1.0s gecen:3.1s
+[00:44:05] [KILIT] → Basladi | conf:0.40
+[00:44:06] [KILIT] X Iptal | bosluk:1.0s gecen:1.0s
+[00:44:08] [KILIT] → Basladi | conf:0.55
+[00:44:10] [KILIT] X Iptal | bosluk:1.0s gecen:2.1s
+[00:44:40] [KILIT] → Basladi | conf:0.47
+[00:44:41] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[00:44:41] [KILIT] → Basladi | conf:0.41
+[00:44:44] [KILIT] X Iptal | bosluk:1.0s gecen:2.5s
+[00:45:13] [KILIT] → Basladi | conf:0.50
+[00:45:14] [KILIT] X Iptal | bosluk:1.0s gecen:1.2s
+[00:45:15] [KILIT] → Basladi | conf:0.46
+[00:45:17] [KILIT] X Iptal | bosluk:1.0s gecen:2.8s
+[00:45:47] [KILIT] → Basladi | conf:0.45
+[00:45:51] [KILIT] X Iptal | bosluk:1.0s gecen:4.2s
+[00:46:20] [KILIT] → Basladi | conf:0.50
+[00:46:24] [KILIT] X Iptal | bosluk:1.0s gecen:4.2s
+[00:47:27] [KILIT] → Basladi | conf:0.48
+[00:47:28] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[00:47:28] [KILIT] → Basladi | conf:0.41
+[00:47:31] [KILIT] X Iptal | bosluk:1.0s gecen:3.2s
+[00:52:58] [KILIT] Basladi
+[00:53:50] [KILIT] → Basladi | conf:0.42
+[00:53:55] [KILIT] X Iptal | bosluk:1.0s gecen:4.7s
+[00:54:25] [KILIT] → Basladi | conf:0.47
+[00:54:29] [KILIT] X Iptal | bosluk:1.0s gecen:3.8s
+[00:55:00] [KILIT] → Basladi | conf:0.52
+[00:55:02] [KILIT] X Iptal | bosluk:1.0s gecen:2.4s
+[00:55:31] [KILIT] → Basladi | conf:0.41
+[00:55:35] [KILIT] X Iptal | bosluk:1.0s gecen:4.2s
+[00:56:03] [KILIT] → Basladi | conf:0.50
+[00:56:07] [KILIT] X Iptal | bosluk:1.0s gecen:4.0s
+[00:56:36] [KILIT] → Basladi | conf:0.45
+[00:56:40] [KILIT] X Iptal | bosluk:1.0s gecen:3.8s
+[00:57:07] [KILIT] → Basladi | conf:0.43
+[00:57:11] [KILIT] X Iptal | bosluk:1.0s gecen:3.9s
+[00:57:39] [KILIT] → Basladi | conf:0.50
+[00:57:43] [KILIT] X Iptal | bosluk:1.0s gecen:4.1s
+[00:58:11] [KILIT] → Basladi | conf:0.43
+[00:58:14] [KILIT] X Iptal | bosluk:1.0s gecen:2.7s
+[00:59:11] [KILIT] → Basladi | conf:0.50
+[00:59:15] [KILIT] X Iptal | bosluk:1.0s gecen:3.5s
+[00:59:40] [KILIT] → Basladi | conf:0.48
+[00:59:44] [KILIT] X Iptal | bosluk:1.0s gecen:3.6s
+[01:00:10] [KILIT] → Basladi | conf:0.44
+[01:00:13] [KILIT] X Iptal | bosluk:1.0s gecen:3.8s
+[01:02:31] [KILIT] → Basladi | conf:0.54
+[01:02:34] [KILIT] X Iptal | bosluk:1.0s gecen:2.4s
+[02:22:41] [KILIT] Basladi
+[02:32:26] [KILIT] → Basladi | conf:0.41
+[02:32:28] [KILIT] X Iptal | bosluk:1.1s gecen:1.9s
+[02:37:58] [KILIT] → Basladi | conf:0.29
+[02:38:02] [KILIT] X Iptal | bosluk:1.0s gecen:4.1s
+[02:38:03] [KILIT] → Basladi | conf:0.81
+[02:38:04] [KILIT] X Iptal | bosluk:1.0s gecen:1.7s
+[02:38:21] [KILIT] → Basladi | conf:0.39
+[02:38:25] [KILIT] X Iptal | bosluk:1.0s gecen:4.3s
+[02:39:31] [KILIT] → Basladi | conf:0.51
+[02:39:32] [KILIT] X Iptal | bosluk:1.0s gecen:1.3s
+[02:41:54] [KILIT] Basladi
+[02:42:30] [KILIT] → Basladi | conf:0.44
+[02:42:32] [KILIT] X Iptal | bosluk:1.0s gecen:1.4s
+[02:44:41] [KILIT] → Basladi | conf:0.28
+[02:44:42] [KILIT] X Iptal | bosluk:1.0s gecen:1.4s
+[02:47:43] [KILIT] Basladi
+[02:50:39] [KILIT] → Basladi | conf:0.30
+[02:50:40] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[02:52:44] [KILIT] → Basladi | conf:0.33
+[02:52:46] [KILIT] X Iptal | bosluk:1.0s gecen:1.2s
+[02:54:44] [KILIT] → Basladi | conf:0.32
+[02:54:45] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[02:58:21] [KILIT] Basladi
+[02:59:08] [KILIT] → Basladi | conf:0.31
+[02:59:09] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[02:59:40] [KILIT] → Basladi | conf:0.27
+[02:59:41] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[02:59:41] [KILIT] → Basladi | conf:0.29
+[02:59:42] [KILIT] X Iptal | bosluk:1.0s gecen:1.2s
+[03:01:21] [KILIT] → Basladi | conf:0.30
+[03:01:22] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[03:01:52] [KILIT] → Basladi | conf:0.29
+[03:01:55] [KILIT] X Iptal | bosluk:1.0s gecen:2.3s
+[03:02:26] [KILIT] → Basladi | conf:0.45
+[03:02:28] [KILIT] X Iptal | bosluk:1.0s gecen:2.6s
+[03:03:28] [KILIT] → Basladi | conf:0.27
+[03:03:30] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[03:08:16] [KILIT] → Basladi | conf:0.28
+[03:08:19] [KILIT] X Iptal | bosluk:1.0s gecen:3.2s
+[03:08:43] [KILIT] → Basladi | conf:0.26
+[03:08:44] [KILIT] X Iptal | bosluk:1.0s gecen:1.2s
+[03:08:44] [KILIT] → Basladi | conf:0.25
+[03:08:46] [KILIT] X Iptal | bosluk:1.0s gecen:1.7s
+[13:44:15] [KILIT] Basladi
+[13:45:15] [KILIT] → Basladi | conf:0.28
+[13:45:16] [KILIT] X Iptal | bosluk:1.1s gecen:1.2s
+[13:45:18] [KILIT] → Basladi | conf:0.51
+[13:45:21] [KILIT] X Iptal | bosluk:1.1s gecen:2.4s
+[13:46:00] [KILIT] → Basladi | conf:0.27
+[13:46:03] [KILIT] X Iptal | bosluk:1.1s gecen:2.6s
+[13:46:39] [KILIT] → Basladi | conf:0.29
+[13:46:42] [KILIT] X Iptal | bosluk:1.1s gecen:3.1s
+[13:47:19] [KILIT] → Basladi | conf:0.25
+[13:47:21] [KILIT] X Iptal | bosluk:1.1s gecen:1.2s
+[13:47:22] [KILIT] → Basladi | conf:0.42
+[13:47:24] [KILIT] X Iptal | bosluk:1.1s gecen:1.7s
+[13:48:02] [KILIT] → Basladi | conf:0.31
+[13:48:03] [KILIT] X Iptal | bosluk:1.1s gecen:1.2s
+[13:48:03] [KILIT] → Basladi | conf:0.26
+[13:48:06] [KILIT] X Iptal | bosluk:1.1s gecen:2.4s
+[13:48:43] [KILIT] → Basladi | conf:0.35
+[13:48:47] [KILIT] X Iptal | bosluk:1.1s gecen:3.6s
+[13:49:26] [KILIT] → Basladi | conf:0.29
+[13:49:30] [KILIT] X Iptal | bosluk:1.1s gecen:3.7s
+[13:50:08] [KILIT] → Basladi | conf:0.27
+[13:50:11] [KILIT] X Iptal | bosluk:1.1s gecen:2.9s
+[13:50:51] [KILIT] → Basladi | conf:0.60
+[13:50:53] [KILIT] X Iptal | bosluk:1.1s gecen:1.5s
+[13:51:34] [KILIT] → Basladi | conf:0.52
+[13:51:37] [KILIT] X Iptal | bosluk:1.1s gecen:3.3s
+[13:52:09] [KILIT] → Basladi | conf:0.29
+[13:52:13] [KILIT] X Iptal | bosluk:1.1s gecen:4.3s
+[13:52:45] [KILIT] → Basladi | conf:0.54
+[13:52:47] [KILIT] X Iptal | bosluk:1.1s gecen:2.1s
+[13:53:22] [KILIT] → Basladi | conf:0.27
+[13:53:23] [KILIT] X Iptal | bosluk:1.1s gecen:1.2s
+[13:53:24] [KILIT] → Basladi | conf:0.31
+[13:53:27] [KILIT] X Iptal | bosluk:1.1s gecen:2.7s
+[13:54:10] [KILIT] → Basladi | conf:0.33
+[13:54:14] [KILIT] X Iptal | bosluk:1.1s gecen:3.7s
+[13:54:58] [KILIT] → Basladi | conf:0.27
+[13:55:02] [KILIT] X Iptal | bosluk:1.1s gecen:3.4s
+[13:55:43] [KILIT] → Basladi | conf:0.25
+[13:55:47] [KILIT] V BASARILI! 4.06s | kez:1
+[13:55:47] [KILIT] V Paket OK | OTONOM | 4.06s
+[23:41:21] [KILIT] Basladi
+[23:43:35] [KILIT] → Basladi | conf:0.69
+[23:43:36] [KILIT] X Iptal | bosluk:1.0s gecen:1.4s
+[23:43:37] [KILIT] → Basladi | conf:0.28
+[23:43:39] [KILIT] X Iptal | bosluk:1.0s gecen:2.4s
+[23:44:07] [KILIT] → Basladi | conf:0.44
+[23:44:08] [KILIT] X Iptal | bosluk:1.0s gecen:1.0s
+[23:44:41] [KILIT] → Basladi | conf:0.31
+[23:44:42] [KILIT] X Iptal | bosluk:1.0s gecen:1.6s
+[23:45:47] [KILIT] → Basladi | conf:0.35
+[23:45:49] [KILIT] X Iptal | bosluk:1.0s gecen:1.4s
+[23:48:01] [KILIT] Basladi
+[23:55:40] [KILIT] Basladi
+[23:57:41] [KILIT] → Basladi | conf:0.33
+[23:57:42] [KILIT] X Iptal | bosluk:1.0s gecen:1.0s
+[23:58:19] [KILIT] → Basladi | conf:0.30
+[23:58:23] [KILIT] X Iptal | bosluk:1.0s gecen:3.5s
+[23:59:01] [KILIT] → Basladi | conf:0.26
+[23:59:03] [KILIT] X Iptal | bosluk:1.0s gecen:1.9s
+[23:59:42] [KILIT] → Basladi | conf:0.30
+[23:59:44] [KILIT] X Iptal | bosluk:1.0s gecen:2.2s
+[00:00:18] [KILIT] → Basladi | conf:0.34
+[00:00:20] [KILIT] X Iptal | bosluk:1.0s gecen:2.4s
+[00:00:53] [KILIT] → Basladi | conf:0.27
+[00:00:57] [KILIT] X Iptal | bosluk:1.0s gecen:3.8s
+[00:01:58] [KILIT] → Basladi | conf:0.28
+[00:01:59] [KILIT] X Iptal | bosluk:1.0s gecen:1.1s
+[00:01:59] [KILIT] → Basladi | conf:0.29
+[00:02:02] [KILIT] X Iptal | bosluk:1.0s gecen:3.0s
+[00:02:31] [KILIT] → Basladi | conf:0.52
+[00:02:33] [KILIT] X Iptal | bosluk:1.0s gecen:1.9s
+[00:03:01] [KILIT] → Basladi | conf:0.36
+[00:03:04] [KILIT] X Iptal | bosluk:1.0s gecen:3.2s
+[00:03:31] [KILIT] → Basladi | conf:0.28
+[00:03:34] [KILIT] X Iptal | bosluk:1.0s gecen:3.0s
+[00:03:59] [KILIT] → Basladi | conf:0.26
+[00:04:01] [KILIT] X Iptal | bosluk:1.0s gecen:1.2s
+[00:04:01] [KILIT] → Basladi | conf:0.28
+[00:04:03] [KILIT] X Iptal | bosluk:1.0s gecen:2.0s
+[00:04:28] [KILIT] → Basladi | conf:0.30
+[00:04:30] [KILIT] X Iptal | bosluk:1.0s gecen:1.4s
+[00:04:30] [KILIT] → Basladi | conf:0.35
+[00:04:32] [KILIT] X Iptal | bosluk:1.1s gecen:1.7s
+[00:04:57] [KILIT] → Basladi | conf:0.27
+[00:05:01] [KILIT] X Iptal | bosluk:1.0s gecen:3.4s
+[00:05:26] [KILIT] → Basladi | conf:0.25
+[00:05:28] [KILIT] X Iptal | bosluk:1.1s gecen:2.1s
+[00:05:56] [KILIT] → Basladi | conf:0.26
+[00:06:00] [KILIT] X Iptal | bosluk:1.0s gecen:3.9s
+[00:06:30] [KILIT] → Basladi | conf:0.31
+[00:06:33] [KILIT] X Iptal | bosluk:1.0s gecen:3.2s
+[00:09:05] [KILIT] Başladı | 4s süre | 1s tolerans | %5 frame toleransı
+[00:17:48] [KILIT] Başladı | 4s süre | 1s tolerans | %5 frame toleransı
+[00:19:09] [KILIT] Başladı | 4s süre | 1s tolerans | %5 frame toleransı
+[00:29:31] [KILIT] Başladı | 4s süre | 1s tolerans | %5 frame toleransı
+[00:35:42] [KILIT] → Başladı | conf:0.90 | Boyut:Y27.9% D26.2%
+[00:35:44] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.9s
+[00:35:44] [KILIT] → Başladı | conf:0.90 | Boyut:Y27.0% D15.4%
+[00:35:48] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.2s
+[00:35:48] [KILIT] → Başladı | conf:0.90 | Boyut:Y38.0% D34.2%
+[00:35:52] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:35:52] [KILIT] → Başladı | conf:0.90 | Boyut:Y25.6% D31.0%
+[00:35:54] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.4s
+[00:35:56] [KILIT] → Başladı | conf:0.90 | Boyut:Y26.7% D20.6%
+[00:36:01] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:5.0s
+[00:36:03] [KILIT] → Başladı | conf:0.90 | Boyut:Y50.2% D21.5%
+[00:36:05] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.7s
+[00:36:05] [KILIT] → Başladı | conf:0.90 | Boyut:Y10.0% D5.7%
+[00:36:09] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:10] [KILIT] → Başladı | conf:0.90 | Boyut:Y52.7% D34.7%
+[00:36:12] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.0s
+[00:36:13] [KILIT] → Başladı | conf:0.90 | Boyut:Y5.2% D3.2%
+[00:36:17] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:17] [KILIT] → Başladı | conf:0.90 | Boyut:Y38.4% D24.3%
+[00:36:21] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:3.3s
+[00:36:21] [KILIT] → Başladı | conf:0.90 | Boyut:Y35.3% D32.5%
+[00:36:25] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:25] [KILIT] → Başladı | conf:0.90 | Boyut:Y22.3% D27.8%
+[00:36:26] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:36:28] [KILIT] → Başladı | conf:0.90 | Boyut:Y23.0% D18.2%
+[00:36:32] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.4s
+[00:36:35] [KILIT] → Başladı | conf:0.90 | Boyut:Y50.6% D21.2%
+[00:36:36] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.6s
+[00:36:37] [KILIT] → Başladı | conf:0.90 | Boyut:Y10.7% D9.0%
+[00:36:41] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:41] [KILIT] → Başladı | conf:0.90 | Boyut:Y41.8% D28.6%
+[00:36:44] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:3.2s
+[00:36:46] [KILIT] → Başladı | conf:0.90 | Boyut:Y36.6% D20.0%
+[00:36:50] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:50] [KILIT] → Başladı | conf:0.90 | Boyut:Y29.5% D23.1%
+[00:36:51] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:36:52] [KILIT] → Başladı | conf:0.90 | Boyut:Y34.5% D32.6%
+[00:36:56] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:36:56] [KILIT] → Başladı | conf:0.90 | Boyut:Y23.2% D28.6%
+[00:36:57] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.3s
+[00:36:59] [KILIT] → Başladı | conf:0.90 | Boyut:Y26.9% D21.2%
+[00:37:03] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.5s
+[00:37:06] [KILIT] → Başladı | conf:0.90 | Boyut:Y50.3% D19.9%
+[00:37:07] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.6s
+[00:37:07] [KILIT] → Başladı | conf:0.90 | Boyut:Y9.8% D8.5%
+[00:37:12] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:12] [KILIT] → Başladı | conf:0.90 | Boyut:Y49.3% D33.6%
+[00:37:14] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.6s
+[00:37:16] [KILIT] → Başladı | conf:0.90 | Boyut:Y13.0% D7.6%
+[00:37:20] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:20] [KILIT] → Başladı | conf:0.90 | Boyut:Y31.8% D24.3%
+[00:37:22] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.6s
+[00:37:22] [KILIT] → Başladı | conf:0.90 | Boyut:Y36.0% D33.9%
+[00:37:26] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:26] [KILIT] → Başladı | conf:0.90 | Boyut:Y22.5% D28.3%
+[00:37:27] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.4s
+[00:37:29] [KILIT] → Başladı | conf:0.90 | Boyut:Y27.3% D22.1%
+[00:37:33] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.5s
+[00:37:36] [KILIT] → Başladı | conf:0.90 | Boyut:Y51.3% D20.1%
+[00:37:37] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.6s
+[00:37:38] [KILIT] → Başladı | conf:0.90 | Boyut:Y7.7% D7.1%
+[00:37:42] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:42] [KILIT] → Başladı | conf:0.90 | Boyut:Y45.7% D33.1%
+[00:37:45] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.3s
+[00:37:46] [KILIT] → Başladı | conf:0.90 | Boyut:Y22.6% D12.8%
+[00:37:50] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:50] [KILIT] → Başladı | conf:0.90 | Boyut:Y44.5% D32.2%
+[00:37:52] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.1s
+[00:37:52] [KILIT] → Başladı | conf:0.90 | Boyut:Y37.3% D36.5%
+[00:37:56] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:37:56] [KILIT] → Başladı | conf:0.90 | Boyut:Y20.5% D25.8%
+[00:37:58] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:38:01] [KILIT] → Başladı | conf:0.90 | Boyut:Y24.7% D20.6%
+[00:38:05] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.1s
+[00:38:08] [KILIT] → Başladı | conf:0.90 | Boyut:Y51.3% D20.6%
+[00:38:09] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.4s
+[00:38:09] [KILIT] → Başladı | conf:0.90 | Boyut:Y6.8% D6.4%
+[00:38:13] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:38:14] [KILIT] → Başladı | conf:0.90 | Boyut:Y48.5% D33.8%
+[00:38:16] [KILIT] ✗ İptal | boşluk:1.1s > 1.0s | gecen:2.3s
+[00:38:18] [KILIT] → Başladı | conf:0.90 | Boyut:Y14.3% D8.6%
+[00:38:22] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:38:22] [KILIT] → Başladı | conf:0.90 | Boyut:Y32.3% D25.8%
+[00:38:23] [KILIT] ✗ İptal | boşluk:1.1s > 1.0s | gecen:1.3s
+[00:38:23] [KILIT] → Başladı | conf:0.90 | Boyut:Y39.7% D37.9%
+[00:38:27] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:38:27] [KILIT] → Başladı | conf:0.90 | Boyut:Y21.0% D26.7%
+[00:38:29] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.3s
+[00:38:33] [KILIT] → Başladı | conf:0.90 | Boyut:Y27.1% D22.8%
+[00:38:38] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.9s
+[00:38:41] [KILIT] → Başladı | conf:0.90 | Boyut:Y19.5% D18.6%
+[00:38:42] [KILIT] ✗ İptal | boşluk:1.1s > 1.0s | gecen:1.3s
+[00:38:45] [KILIT] → Başladı | conf:0.90 | Boyut:Y23.4% D22.4%
+[00:38:49] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:4.4s
+[00:38:52] [KILIT] → Başladı | conf:0.90 | Boyut:Y50.4% D19.3%
+[00:38:53] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.5s
+[00:38:53] [KILIT] → Başladı | conf:0.90 | Boyut:Y5.7% D5.4%
+[00:38:57] [KILIT] ✗ Frame toleransı aşıldı: 0.00s < 3.80s — sıfırlanıyor
+[00:38:57] [KILIT] → Başladı | conf:0.90 | Boyut:Y10.1% D9.6%
+[00:39:01] [KILIT] ✗ İptal | boşluk:1.1s > 1.0s | gecen:3.4s
+[00:39:35] [KILIT] → Başladı | conf:0.88 | Boyut:Y11.6% D12.5%
+[00:39:37] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.0s
+[00:39:43] [KILIT] → Başladı | conf:0.88 | Boyut:Y6.2% D5.4%
+[00:39:44] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.2s
+[00:40:06] [KILIT] → Başladı | conf:0.88 | Boyut:Y9.1% D8.9%
+[00:40:08] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.6s
+[00:40:36] [KILIT] → Başladı | conf:0.88 | Boyut:Y8.8% D10.1%
+[00:40:38] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.5s
+[00:40:43] [KILIT] → Başladı | conf:0.88 | Boyut:Y5.8% D5.6%
+[00:40:44] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:40:49] [KILIT] → Başladı | conf:0.88 | Boyut:Y18.3% D5.0%
+[00:40:51] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.8s
+[00:41:09] [KILIT] → Başladı | conf:0.88 | Boyut:Y5.9% D6.7%
+[00:41:11] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.6s
+[00:41:23] [KILIT] → Başladı | conf:0.88 | Boyut:Y6.0% D6.0%
+[00:41:24] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:41:47] [KILIT] → Başladı | conf:0.88 | Boyut:Y7.7% D8.3%
+[00:41:48] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:41:48] [KILIT] → Başladı | conf:0.88 | Boyut:Y6.2% D6.8%
+[00:41:50] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.3s
+[00:41:55] [KILIT] → Başladı | conf:0.88 | Boyut:Y5.2% D4.9%
+[00:41:56] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:42:15] [KILIT] → Başladı | conf:0.88 | Boyut:Y8.0% D8.8%
+[00:42:17] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.4s
+[00:42:22] [KILIT] → Başladı | conf:0.88 | Boyut:Y6.9% D6.7%
+[00:42:23] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:1.1s
+[00:42:43] [KILIT] → Başladı | conf:0.88 | Boyut:Y5.8% D6.5%
+[00:42:45] [KILIT] ✗ İptal | boşluk:1.0s > 1.0s | gecen:2.4s
