@@ -24,4 +24,4 @@ http://localhost:8554/gcs_sim.html
 
 Kullanıcı adı ve şifre girmeden direkt "Bağlan & Başlat" butonuna basın
 
-GCS Ekranına bağlandınız.
+GCS ekranına bağlandınız..
