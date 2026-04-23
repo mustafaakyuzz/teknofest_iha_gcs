@@ -146,7 +146,6 @@ canvas{display:block}
 </head>
 <body>
 
-<!-- ── CONFIG OVERLAY ── -->
 <div id="cfg-overlay">
   <div id="cfg-box">
     <h2>GCS BAĞLANTI YAPILANDIRMASI</h2>
@@ -227,7 +226,6 @@ canvas{display:block}
   </div>
 </div>
 
-<!-- ── MAIN GCS ── -->
 <div class="gcs" id="main-gcs" style="display:none">
 
   <div class="topbar">
@@ -243,7 +241,6 @@ canvas{display:block}
     </div>
   </div>
 
-  <!-- LEFT -->
   <div class="left-col">
     <div class="panel" style="flex:0 0 auto">
       <div class="panel-title">TELEMETRİ <span id="telem-src">— DEMO</span></div>
@@ -278,24 +275,17 @@ canvas{display:block}
     </div>
   </div>
 
-  <!-- CENTER -->
   <div class="panel" style="display:flex;flex-direction:column">
     <div class="panel-title">KAMERA — <span id="cam-src-label">SİMÜLASYON</span> <span id="fps-label">—</span></div>
     <div class="camera-wrap" id="cam-wrap">
-      <!-- MJPEG stream buraya gelecek -->
       <img id="cam-stream" style="width:100%;height:100%;object-fit:cover;display:none" alt=""/>
       <canvas id="cam" style="width:100%;height:100%;display:block"></canvas>
       <div class="cam-overlay" id="cam-overlay-el">
-        <!-- AK: Kamera Görüş Alanı — dış yeşil çerçeve -->
         <div id="ak-box" style="position:absolute;inset:0;border:2px solid rgba(34,197,94,.6);pointer-events:none;box-sizing:border-box"></div>
-        <!-- AV: Hedef Vuruş Alanı — sarı kutu %25/%10 kenar -->
         <div id="av-box" style="position:absolute;border:2px solid rgba(250,204,21,.85);pointer-events:none;box-sizing:border-box;
           left:25%;top:10%;right:25%;bottom:10%"></div>
-        <!-- AV etiket -->
         <div style="position:absolute;left:25%;top:10%;transform:translateY(-18px);font-size:9px;color:rgba(250,204,21,.9);font-family:monospace;font-weight:600">AV</div>
-        <!-- AH: Kilitlenme Dörtgeni — kırmızı, YOLO bbox -->
         <div id="ah-box" style="position:absolute;border:2px solid rgba(239,68,68,.9);pointer-events:none;display:none;box-sizing:border-box"></div>
-        <!-- Kilitlenme sayacı -->
         <div id="kilit-sayac" style="position:absolute;top:12%;left:50%;transform:translateX(-50%);
           background:rgba(0,0,0,.75);border:1px solid rgba(239,68,68,.6);
           border-radius:6px;padding:4px 14px;display:none;flex-direction:column;align-items:center;gap:2px">
@@ -305,7 +295,6 @@ canvas{display:block}
             <div id="kilit-bar" style="height:100%;background:#ef4444;border-radius:3px;width:0%;transition:width .1s"></div>
           </div>
         </div>
-        <!-- Başarılı kilitlenme bildirimi -->
         <div id="kilit-basarili" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
           background:rgba(34,197,94,.9);border-radius:8px;padding:10px 24px;
           font-size:16px;font-weight:700;color:#fff;font-family:monospace;display:none;text-align:center">
@@ -337,7 +326,6 @@ canvas{display:block}
     </div>
   </div>
 
-  <!-- RIGHT: API LOG -->
   <div class="panel">
     <div class="panel-title">API LOG — mock_sunucu.py <span id="req-count">0 REQ</span></div>
     <div class="panel-body" style="padding:5px">
@@ -345,7 +333,6 @@ canvas{display:block}
     </div>
   </div>
 
-  <!-- BOTTOM -->
   <div class="bottom-row">
     <div class="panel">
       <div class="panel-title">GÖREV DURUMU — AŞAMA TAKİBİ</div>
@@ -413,6 +400,19 @@ let CFG = {
   takimNo: 1,
   hz: 1000
 };
+
+// GLOBAL DEĞİŞKENLER (Gerçek Zamanlı Harita İçin Eklendi)
+let aktifHSS = [];
+let myIha = {lat: 47.3979, lon: 8.5461, yaw: 0};
+let rakipIhalar = [];
+
+// Örnek Sınır Koordinatları (Yarışma günü hakemler tarafından güncellenecektir)
+const SINIR_KOORDINATLARI = [
+  {lat: 47.4000, lon: 8.5420},
+  {lat: 47.4000, lon: 8.5500},
+  {lat: 47.3960, lon: 8.5500},
+  {lat: 47.3960, lon: 8.5420}
+];
 
 let reqCount = 0;
 let startTime = Date.now();
@@ -606,44 +606,34 @@ async function startPolling() {
 async function pollLoop() {
   if (!connected) return;
   const t0 = Date.now();
-  const packet = buildPacket();
-  addLog('req','POST',`/api/telemetri_gonder | enlem:${packet.iha_enlem} alt:${packet.iha_irtifa.toFixed(1)}m`, null);
-  try {
-    const r = await fetch(CFG.apiBase + '/api/telemetri_gonder', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(packet), 
-    });
-    const lat = Date.now()-t0;
-    totalCount++;
-    if (r.ok) {
-      const d = await r.json();
-      successCount++;
-      // mock_sunucu.py "konumBilgileri" key'i ile dönüyor
-      const rakip = d.konumBilgileri ?? d.konumlar ?? d.rakipler ?? [];
-      const latMs = Date.now()-t0;
-      addLog('res','200',`Telemetri OK | ${latMs}ms | Rakip: ${rakip.length} | Alt: ${packet.iha_irtifa.toFixed(1)}m`,'200');
-      updateTelemUI(packet);
-      updateStatusBars(latMs, rakip.length);
-      setPill('pill-telem','pill-active','TELEMETRİ OK');
-      dbTelCount++;
-      document.getElementById('sv-db').textContent = dbTelCount;
-      document.getElementById('sb-db').style.width = Math.min(dbTelCount/100*100,100)+'%';
-      document.getElementById('db-count').textContent = `DB: ${dbTelCount} kayıt`;
-      if (rakip.length > 0) {
-        dbRakipCount += rakip.length;
-        document.getElementById('sv-rakip').textContent = dbRakipCount;
-        document.getElementById('sb-rakip').style.width = Math.min(dbRakipCount/50*100,100)+'%';
-        // Rakip konumunu logla
-        rakip.forEach(r2 => {
-          addLog('sys','RAKİP',`T${r2.takim_numarasi} → ${r2.iha_enlem?.toFixed(4)}, ${r2.iha_boylam?.toFixed(4)} | Alt:${r2.iha_irtifa}m | Hız:${r2.iha_hizi ?? r2.iha_hiz}m/s`, null);
-        });
+  
+  if (CFG.mode === 'sim') {
+    // SİMÜLASYON MODU: intercept.py üzerinden sunucuya gelen GERÇEK PX4 verisini çek
+    try {
+      const r = await fetch(CFG.apiBase + '/api/telemetri_al');
+      if (r.ok) {
+        const realPacket = await r.json();
+        if (realPacket && realPacket.iha_enlem) {
+          updateTelemUI(realPacket);
+          setPill('pill-telem','pill-active','TELEMETRİ OK');
+        }
       }
-    } else {
-      addLog('err',r.status,`Telemetri hata: ${r.status}`,r.status);
-      setPill('pill-telem','pill-danger','HATA '+r.status);
-    }
-  } catch(e) {
-    addLog('err','ERR','Telemetri gönderilemedi: '+e.message, null);
+    } catch(e) {}
+  } else {
+    // DEMO MODU: Test için sahte paket üretip sunucuya gönder (Eski sistem)
+    const packet = buildPacket();
+    try {
+      const r = await fetch(CFG.apiBase + '/api/telemetri_gonder', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(packet) 
+      });
+      if (r.ok) {
+        const d = await r.json();
+        rakipIhalar = d.konumBilgileri ?? [];
+        updateTelemUI(packet);
+        setPill('pill-telem','pill-active','TELEMETRİ OK');
+      }
+    } catch(e) {}
   }
   setTimeout(pollLoop, CFG.hz);
 }
@@ -675,7 +665,7 @@ async function fetchQR() {
   } catch(e) {}
 }
 
-// ── HSS KOORDİNATLARI ──
+// ── HSS KOORDİNATLARI (GÜNCELLENEN KISIM) ──
 async function fetchHSS() {
   if (!connected) return;
   addLog('req','GET','/api/hss_koordinatlari', null);
@@ -683,10 +673,10 @@ async function fetchHSS() {
     const r = await fetch(CFG.apiBase + '/api/hss_koordinatlari', {});
     if (r.ok) {
       const d = await r.json();
-      // mock_sunucu.py: { hss_koordinat_bilgileri: [...] }
-      const hssler = d.hss_koordinat_bilgileri ?? [];
-      if (hssler.length > 0) {
-        hssler.forEach(h => {
+      aktifHSS = d.hss_koordinat_bilgileri ?? [];
+      
+      if (aktifHSS.length > 0) {
+        aktifHSS.forEach(h => {
           addLog('res','200',`HSS id:${h.id} → ${h.hssEnlem}, ${h.hssBoylam} r:${h.hssYaricap}m`,'200');
         });
       } else {
@@ -694,13 +684,13 @@ async function fetchHSS() {
       }
     }
   } catch(e) { addLog('err','ERR','hss: '+e.message, null); }
-  setTimeout(fetchHSS, 60000);
+  
+  setTimeout(fetchHSS, 5000);
 }
 
 // ── PACKET BUILDER (telemetri paketi alanları) ──
 let simLat=47.3979, simLon=8.5461, simAlt=0, simYaw=0;
 function buildPacket() {
-  // Demo modda simüle et, sim modda PX4 telemetrisi buraya gelir
   simAlt += (Math.random()-.3)*0.5; simAlt = Math.max(0, Math.min(80, simAlt));
   simYaw = (simYaw + 0.5) % 360;
   simLat += (Math.random()-.5)*0.00002;
@@ -736,6 +726,12 @@ function updateTelemUI(p) {
   document.getElementById('hud-alt').textContent = p.iha_irtifa.toFixed(1)+'m';
   document.getElementById('hud-lat').textContent = p.iha_enlem.toFixed(5);
   document.getElementById('hud-lon').textContent = p.iha_boylam.toFixed(5);
+  
+  // Harita için Kendi Konumumuzu Güncelle
+  myIha.lat = p.iha_enlem;
+  myIha.lon = p.iha_boylam;
+  myIha.yaw = p.iha_yonelme;
+
   drawCompass(p.iha_yonelme);
   drawAttitude(p.iha_dikilme, p.iha_yatis);
 }
@@ -842,7 +838,6 @@ function connectCameraStream() {
   const statusTag = document.getElementById('cam-tag-mode');
   const resTag = document.getElementById('cam-tag-res');
 
-  // Önce bağlantıyı test et
   fetch(CFG.camUrl.replace('/video', '/status'))
     .then(r => r.json())
     .then(d => {
@@ -856,7 +851,6 @@ function connectCameraStream() {
         document.getElementById('cam-src-label').textContent = 'GAZEBO';
         document.getElementById('fps-label').textContent = d.frames + ' FRAME';
         addLog('sys','CAM','Gazebo kamera stream bağlandı: ' + CFG.camUrl, null);
-        // FPS sayacı
         setInterval(() => {
           fetch(CFG.camUrl.replace('/video', '/status'))
             .then(r => r.json())
@@ -889,7 +883,7 @@ function startCameraAnim() {
     const gh = ctx.createLinearGradient(0,h*.55,0,h);
     gh.addColorStop(0,'#0d1f0d'); gh.addColorStop(1,'#060e06');
     ctx.fillStyle=gh; ctx.fillRect(0,h*.55,w,h*.45);
-    // Ground grid lines (Gazebo-like)
+    // Ground grid lines
     ctx.strokeStyle='rgba(34,197,94,.12)'; ctx.lineWidth=.5;
     const gs=40, off=bgOff%gs;
     for(let x=-gs+off;x<w+gs;x+=gs){ctx.beginPath();ctx.moveTo(x,h*.55);ctx.lineTo(x-(h*.45)*.3,h);ctx.stroke();}
@@ -962,46 +956,96 @@ function drawAttitude(pitch, roll) {
 }
 drawCompass(0); drawAttitude(0,0);
 
-// ── MİNİ MAP ──
-let mapT=0;
-const waypoints=[{x:.15,y:.75},{x:.3,y:.35},{x:.55,y:.2},{x:.78,y:.45},{x:.65,y:.72}];
+// ── MİNİ MAP (GERÇEK ZAMANLI GPS) ──
 function startMapAnim() {
-  const canvas=document.getElementById('minimap');
-  const mctx=canvas.getContext('2d');
+  const canvas = document.getElementById('minimap');
+  const mctx = canvas.getContext('2d');
   function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
   window.addEventListener('resize',resize); resize();
-  function draw(){
-    const w=canvas.width,h=canvas.height;
-    if(!w||!h){requestAnimationFrame(draw);return;}
+
+  // GPS (Enlem/Boylam) verisini Canvas (X/Y) piksellerine çeviren fonksiyon
+// YENİ: Haritanın merkezini her zaman İHA'mızın anlık konumu yapıyoruz!
+  function gpsToCanvas(lat, lon, w, h) {
+    const MAP_ORIGIN = { lat: myIha.lat, lon: myIha.lon }; 
+    const MAP_SCALE = 90000; // Zoom seviyesi (Yakınlaşıp uzaklaşmak istersen bu sayıyı değiştirebilirsin)
+    const x = (w / 2) + (lon - MAP_ORIGIN.lon) * MAP_SCALE;
+    const y = (h / 2) - (lat - MAP_ORIGIN.lat) * MAP_SCALE * 1.4; 
+    return {x, y};
+  }
+
+  function draw() {
+    const w = canvas.width, h = canvas.height;
+    if(!w || !h){requestAnimationFrame(draw);return;}
+    
+    // Arkaplan ve Grid
     mctx.fillStyle='#070d1a'; mctx.fillRect(0,0,w,h);
     mctx.strokeStyle='rgba(30,58,95,.3)'; mctx.lineWidth=.5;
     for(let i=0;i<8;i++){
       mctx.beginPath(); mctx.moveTo(i*w/7,0); mctx.lineTo(i*w/7,h); mctx.stroke();
       mctx.beginPath(); mctx.moveTo(0,i*h/7); mctx.lineTo(w,i*h/7); mctx.stroke();
     }
-    // Rota
-    mctx.strokeStyle='rgba(59,130,246,.35)'; mctx.lineWidth=1.2; mctx.setLineDash([4,4]);
-    mctx.beginPath();
-    waypoints.forEach((p,i)=>{i===0?mctx.moveTo(p.x*w,p.y*h):mctx.lineTo(p.x*w,p.y*h)});
-    mctx.stroke(); mctx.setLineDash([]);
-    waypoints.forEach((p,i)=>{
-      mctx.beginPath(); mctx.arc(p.x*w,p.y*h,3.5,0,Math.PI*2);
-      mctx.fillStyle=i<2?'#22c55e':'#1e40af'; mctx.fill();
+
+    // 1. SINIRLARI ÇİZ
+    if(SINIR_KOORDINATLARI.length > 0) {
+        mctx.beginPath();
+        SINIR_KOORDINATLARI.forEach((p, i) => {
+            const pos = gpsToCanvas(p.lat, p.lon, w, h);
+            if(i === 0) mctx.moveTo(pos.x, pos.y);
+            else mctx.lineTo(pos.x, pos.y);
+        });
+        mctx.closePath();
+        mctx.strokeStyle = 'rgba(234, 179, 8, 0.6)'; // Sarı uçuş sınırları
+        mctx.lineWidth = 2;
+        mctx.setLineDash([5, 5]);
+        mctx.stroke();
+        mctx.setLineDash([]);
+    }
+
+    // 2. HSS ALANLARINI ÇİZ
+    aktifHSS.forEach(hss => {
+      const center = gpsToCanvas(hss.hssEnlem, hss.hssBoylam, w, h);
+      const rPixels = (hss.hssYaricap / 111320) * 90000 * 1.4; 
+
+      mctx.beginPath();
+      mctx.arc(center.x, center.y, rPixels, 0, Math.PI * 2);
+      mctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+      mctx.fill();
+      mctx.strokeStyle = 'rgba(239, 68, 68, 0.8)';
+      mctx.setLineDash([2, 2]);
+      mctx.lineWidth = 1.5;
+      mctx.stroke();
+      mctx.setLineDash([]);
+
+      mctx.fillStyle = 'rgba(239, 68, 68, 0.9)';
+      mctx.font = '8px monospace';
+      mctx.fillText('HSS İHLAL ALANI', center.x - 35, center.y - rPixels - 5);
     });
-    // İHA
-    mapT=(mapT+0.002)%1;
-    const seg=Math.floor(mapT*(waypoints.length-1));
-    const lt=mapT*(waypoints.length-1)-seg;
-    const a=waypoints[seg],b=waypoints[Math.min(seg+1,waypoints.length-1)];
-    const ux=a.x+(b.x-a.x)*lt, uy=a.y+(b.y-a.y)*lt;
-    const ang=Math.atan2(b.y-a.y,b.x-a.x);
-    mctx.save(); mctx.translate(ux*w,uy*h); mctx.rotate(ang);
-    mctx.fillStyle='#60a5fa';
-    mctx.beginPath(); mctx.moveTo(0,-7); mctx.lineTo(-4,5); mctx.lineTo(0,2); mctx.lineTo(4,5); mctx.closePath(); mctx.fill();
+
+    // 3. RAKİP İHA'LARI ÇİZ
+    rakipIhalar.forEach(r => {
+        const pos = gpsToCanvas(r.iha_enlem, r.iha_boylam, w, h);
+        mctx.beginPath();
+        mctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
+        mctx.fillStyle = '#f97316'; // Turuncu renk
+        mctx.fill();
+        mctx.fillStyle = '#fff';
+        mctx.font = '8px monospace';
+        mctx.fillText('T' + r.takim_numarasi, pos.x + 6, pos.y + 3);
+    });
+
+    // 4. KENDİ İHA'MIZI ÇİZ
+    const myPos = gpsToCanvas(myIha.lat, myIha.lon, w, h);
+    mctx.save(); 
+    mctx.translate(myPos.x, myPos.y); 
+    // -90 ofseti kaldırıldı, burun tam olarak doğru yönü (Yaw) gösterecek
+    mctx.rotate(myIha.yaw * Math.PI / 180); 
+    mctx.fillStyle='#3b82f6';
+    mctx.beginPath(); mctx.moveTo(0,-8); mctx.lineTo(-5,6); mctx.lineTo(0,3); mctx.lineTo(5,6); mctx.closePath(); mctx.fill();
     mctx.restore();
-    // Gazebo origin label
-    mctx.fillStyle='rgba(34,197,94,.5)'; mctx.font='9px monospace';
-    mctx.fillText('PX4 ORIGIN: 47.3980, 8.5461',4,h-6);
+
+    mctx.fillStyle='rgba(34,197,94,.8)'; mctx.font='9px monospace';
+    mctx.fillText(`MERKEZ (İHA): ${myIha.lat.toFixed(5)}, ${myIha.lon.toFixed(5)}`, 4, h-6);
+
     requestAnimationFrame(draw);
   }
   draw();

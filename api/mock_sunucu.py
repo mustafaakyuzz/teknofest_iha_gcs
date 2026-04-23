@@ -1,7 +1,12 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from datetime import datetime
 import uvicorn
+
+# YENİ: Swagger arayüzü için HSS tetikleme modeli
+class HSSTestDurumu(BaseModel):
+    aktif: bool
 
 app = FastAPI()
 
@@ -56,9 +61,17 @@ async def giris(request: Request):
 async def saat():
     return sunucu_saati()
 
+son_telemetri = {}
+
 @app.post("/api/telemetri_gonder")
 async def telemetri(request: Request):
+    global son_telemetri
     veri = await request.json()
+    
+    # YENİ EKLENEN: Gerçek PX4 telemetrisini GCS haritasında göstermek için kaydet
+    if veri.get("takim_numarasi") == 1:
+        son_telemetri = veri
+        
     print(
         f"[TELEMETRI] "
         f"enlem={veri.get('iha_enlem', 0):.6f} "
@@ -83,6 +96,11 @@ async def telemetri(request: Request):
         ]
     }
 
+# YENİ EKLENEN: GCS arayüzünün gerçek İHA konumunu okuması için
+@app.get("/api/telemetri_al")
+async def telemetri_al():
+    return son_telemetri
+
 @app.post("/api/kilitlenme_bilgisi")
 async def kilitlenme(request: Request):
     veri = await request.json()
@@ -101,14 +119,41 @@ async def kamikaze(request: Request):
 async def qr():
     return {"qrEnlem": 47.399, "qrBoylam": 8.548}
 
+# YENİ: HSS durumunu kontrol eden global değişken (Başlangıçta kapalı)
+hss_aktif = False 
+
 @app.get("/api/hss_koordinatlari")
 async def hss():
+    # Şartname: HSS kapalıysa sunucu boş liste [] döndürür.
+    hss_liste = []
+    if hss_aktif:
+        # Devriye rotanın (DEVRIYE_WP) 4 farklı kenarını kesecek zorlu bir test parkuru
+        hss_liste = [
+            # 1. Kuzey Kenarını Kesen (Yarıçap 40m)
+            {"id": 1, "hssEnlem": 47.3985, "hssBoylam": 8.5475, "hssYaricap": 40},
+            # 2. Doğu Kenarını Kesen (Yarıçap 50m)
+            {"id": 2, "hssEnlem": 47.3978, "hssBoylam": 8.5488, "hssYaricap": 50},
+            # 3. Güney Kenarını Kesen (Yarıçap 45m)
+            {"id": 3, "hssEnlem": 47.3973, "hssBoylam": 8.5450, "hssYaricap": 45},
+            # 4. Batı Kenarını Kesen (Büyük Boy - Yarıçap 65m)
+            {"id": 4, "hssEnlem": 47.3980, "hssBoylam": 8.5434, "hssYaricap": 65}
+        ]
+        
     return {
         "sunucusaati": sunucu_saati(),
-        "hss_koordinat_bilgileri": [
-            {"id": 0, "hssEnlem": 47.400, "hssBoylam": 8.550, "hssYaricap": 50}
-        ]
+        "hss_koordinat_bilgileri": hss_liste
     }
+
+# YENİ TEST ENDPOINT'İ: HSS'yi Swagger üzerinden açıp kapatmak için
+@app.post("/api/hss_test_tetikle")
+async def hss_tetikle(durum: HSSTestDurumu):
+    global hss_aktif
+    hss_aktif = durum.aktif
+    
+    mesaj = "AKTİF EDİLDİ (Kırmızı Alan Açıldı!)" if hss_aktif else "KAPATILDI (Alan Temiz)"
+    print(f"\n[HAKEM SİMÜLASYONU] HSS Sistemi {mesaj}\n")
+    
+    return {"mesaj": f"HSS Başarıyla {mesaj}", "hss_aktif": hss_aktif}
 
 # ── KILITLENME DURUM ENDPOINT ──
 # kilitlenme_algo.py buraya POST atar, GCS polling ile okur
